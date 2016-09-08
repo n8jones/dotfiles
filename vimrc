@@ -2,6 +2,7 @@ source $VIM/_vimrc
 set backupdir=~/vimfiles/backup
 set undodir=~/vimfiles/undo
 set number
+set wildignore+=*\\target\\*,*\\.svn\\*,*\\.git\\*,*\\workspace\\*
 imap jj <Esc>
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
