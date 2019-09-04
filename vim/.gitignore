@@ -1,5 +1,0 @@
-backup/
-undo/
-bundles/
-!bundles/Vundle.vim/
-.netrwhist
