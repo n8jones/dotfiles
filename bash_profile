@@ -1,3 +1,6 @@
+#!/bin/bash
+# vim: set filetype=sh :
+
 export PATH="/usr/local/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
