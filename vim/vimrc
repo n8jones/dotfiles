@@ -15,6 +15,7 @@ nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
+map <Leader>t :NERDTreeToggl<CR>
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
