@@ -15,9 +15,37 @@ nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
-map <Leader>t :NERDTreeToggl<CR>
+map <Leader>tf :NERDTreeToggl<CR>
+map <Leader>to :pedit ~/Documents/todo.txt<CR>
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
+
+function CreateNote()
+  let t = localtime()
+  let dirname =  strftime("~/Documents/Notes/%Y/%m", t)
+  let notename = strftime("%Y%m%dT%H%M%S")
+  let name = input('Enter note name:')
+  if(strlen(name) > 0) 
+    let notename = notename . '-' . tolower(join(split(name, " "), "_"))
+  endif
+  let notename = notename . '.md'
+  execute 'new ' . notename
+endfunction
+
+map <Leader>tn :call CreateNote()<cr>
+
+function s:MkNonExDir(file, buf)
+  if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+    let dir=fnamemodify(a:file, ':h')
+    if !isdirectory(dir) && confirm("Make directory " . dir . "? ", "&Yes\n&No") == 1
+      call mkdir(dir, 'p')
+    endif
+  endif
+endfunction
+augroup BWCCreateDir
+  autocmd!
+  autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
 
