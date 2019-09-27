@@ -15,26 +15,39 @@ nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
-map <Leader>tf :NERDTreeToggl<CR>
-map <Leader>to :pedit ~/Documents/todo.txt<CR>
+nmap <Leader>tf :NERDTreeToggl<CR>
+nmap <Leader>to :pedit ~/Documents/todo.txt<CR>
+nmap <Leader>ns :CtrlP ~/Documents/Notes/<CR>
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
 
-function CreateNote()
+function CreateNote(...)
   let t = localtime()
+  let name = join(a:000)
   let dirname =  strftime("~/Documents/Notes/%Y/%m", t)
   let notename = strftime("%Y%m%dT%H%M%S")
-  let name = input('Enter note name:')
   if(strlen(name) > 0) 
-    let notename = notename . '-' . tolower(join(split(name, " "), "_"))
+    let notename = notename . '-' . tolower(join(split(name, " "), "_"))[0:30]
   endif
   let notename = notename . '.md'
   execute 'new ' . notename
+  let frontmatter = ["---"]
+  call add(frontmatter, "date: " . strftime("%Y-%m-%d %H:%M:%S%z"))
+  call add(frontmatter, "tags: ")
+  call add(frontmatter, "location: ")
+  call add(frontmatter, "---")
+  call add(frontmatter, "")
+  if(strlen(name) > 0)
+    call add(frontmatter, "# " . name)
+  endif
+  let failed = append(0, frontmatter)
 endfunction
 
-map <Leader>tn :call CreateNote()<cr>
+command -nargs=* NotesNew call CreateNote(<f-args>)
+command -nargs=+ NotesSearch Ack <args> ~/Documents/Notes/
+command -nargs=+ NotesFind AckFile <args> ~/Documents/Notes/
 
 function s:MkNonExDir(file, buf)
   if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
@@ -48,4 +61,13 @@ augroup BWCCreateDir
   autocmd!
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_cmd = 'CtrlPMRU'
+
+if executable('ag') 
+  let g:ackprg = 'ag --vimgrep'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
 
