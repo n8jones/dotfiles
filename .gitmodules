@@ -13,3 +13,6 @@
 [submodule "vim/pack/plugins/start/todo.txt"]
 	path = vim/pack/plugins/start/todo.txt
 	url = https://github.com/dbeniamine/todo.txt-vim.git
+[submodule "vim/pack/plugins/start/restor_view.vim"]
+	path = vim/pack/plugins/start/restor_view.vim
+	url = https://github.com/vim-scripts/restore_view.vim.git
