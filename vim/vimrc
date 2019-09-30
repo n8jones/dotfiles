@@ -15,6 +15,8 @@ nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
+vnoremap <D-c> "+y
+vnoremap <D-p> "+p
 nmap <Leader>tf :NERDTreeToggl<CR>
 nmap <Leader>to :pedit ~/Documents/todo.txt<CR>
 nmap <Leader>ns :CtrlP ~/Documents/Notes/<CR>
@@ -26,18 +28,18 @@ python3 del powerline_setup
 function CreateNote(...)
   let t = localtime()
   let name = join(a:000)
-  let dirname =  strftime("~/Documents/Notes/%Y/%m", t)
+  let dirname =  strftime("~/Documents/Notes/%Y/%m/", t)
   let notename = strftime("%Y%m%dT%H%M%S")
   if(strlen(name) > 0) 
     let notename = notename . '-' . tolower(join(split(name, " "), "_"))[0:30]
   endif
   let notename = notename . '.md'
-  execute 'new ' . notename
+  execute 'new ' . dirname . notename
   let frontmatter = ["---"]
   call add(frontmatter, "date: " . strftime("%Y-%m-%d %H:%M:%S%z"))
   call add(frontmatter, "tags: ")
   call add(frontmatter, "location: ")
-  call add(frontmatter, "---")
+  call add(frontmatter, "...")
   call add(frontmatter, "")
   if(strlen(name) > 0)
     call add(frontmatter, "# " . name)
@@ -70,4 +72,7 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+
+let g:markdown_fenced_languages = ['groovy', 'java']
+let g:markdown_folding = 1
 
