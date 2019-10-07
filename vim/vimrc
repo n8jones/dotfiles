@@ -21,10 +21,6 @@ nmap <Leader>tf :NERDTreeToggl<CR>
 nmap <Leader>to :pedit ~/Documents/todo.txt<CR>
 nmap <Leader>ns :CtrlP ~/Documents/Notes/<CR>
 
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
-
 function CreateNote(...)
   let t = localtime()
   let name = join(a:000)
