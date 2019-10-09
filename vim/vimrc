@@ -82,3 +82,5 @@ let g:Todo_txt_prefix_creation_date=1
 
 let g:airline_powerline_fonts = 1
 
+let g:polyglot_disabled = ['markdown']
+
