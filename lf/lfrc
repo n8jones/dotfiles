@@ -1,0 +1,4 @@
+set icons
+set previewer ~/dotfiles/bin/pv.sh
+map i $~/dotfiles/bin/pv.sh $f | less -R
+
