@@ -9,6 +9,8 @@ set visualbell
 set encoding=utf-8
 set ts=2 sts=2 sw=2 expandtab
 set laststatus=2
+set list
+set listchars=eol:$,tab:-⇥,trail:~,extends:>,precedes:<
 imap jj <Esc>
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
