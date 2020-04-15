@@ -1,7 +1,7 @@
 # vim: set filetype=sh :
 echo 'Applying profile'
 
-export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/go/bin:/usr/local/bin:$PATH"
 
 export GREP_OPTIONS="--color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn} -I"
 
