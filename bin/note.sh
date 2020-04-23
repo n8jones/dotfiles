@@ -11,7 +11,19 @@ actions:
 EOF
 }
 
-while getopts "h?NES" opt; do
+new_note() {
+  id=$(uuidgen)
+  created_date=$(date "+%Y-%m-%d %H:%M")
+  cat << EOF
+id: $id
+title: $title
+created_date: $created_date
+---
+$message
+EOF
+}
+
+while getopts "h?NESt:" opt; do
   case "$opt" in
     h|\?)
       show_help
@@ -22,6 +34,8 @@ while getopts "h?NES" opt; do
     E) action=edit
       ;;
     S) action=search
+      ;;
+    t) title=$OPTARG
       ;;
   esac
 done
@@ -34,5 +48,10 @@ then
 fi
 
 shift $((OPTIND-1))
+message=$@
 
-echo "action: $action, leftovers: $@"
+echo "action: $action, title: $title, message: $message"
+case "$action" in
+  new) new_note
+    ;;
+esac
