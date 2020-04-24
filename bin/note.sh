@@ -12,18 +12,39 @@ EOF
 }
 
 new_note() {
-  id=$(uuidgen)
+  id=$(uuidgen | tr '[:upper:]' '[:lower:]')
   created_date=$(date "+%Y-%m-%d %H:%M")
-  cat << EOF
+  tmpFile=`mktemp`
+  cat << EOF >> $tmpFile
+# vim: set filetype=yaml:
 id: $id
 title: $title
 created_date: $created_date
 ---
 $message
 EOF
+  vim $tmpFile
+  if [ $? -eq 0 ]
+  then
+    if [ -z "$folder" ]
+    then
+      folder=$(date "+%Y/%m/%d")
+    fi
+    noteFile="$notebook/$folder/"
+    mkdir -p "$noteFile"
+    fileTitlePortion=$(yq r $tmpFile 'title' | tr '[:upper:]' '[:lower:]' | perl -p -e "s/'|\s+$|^\s+//g" | perl -p -e 's/\b(a|an|the)\b/ /g' | tr -sC '[:alnum:]' '-')
+    if [ ! -z "$fileTitlePortion" ]
+    then
+      noteFile="$noteFile${fileTitlePortion:0:25}-"
+    fi
+    noteFile="$noteFile${id:0:5}.note.yaml"
+    mv "$tmpFile" "$noteFile"
+  else
+    rm "$tmpFile"
+  fi
 }
 
-while getopts "h?NESt:" opt; do
+while getopts "h?NESt:b:f:" opt; do
   case "$opt" in
     h|\?)
       show_help
@@ -36,6 +57,10 @@ while getopts "h?NESt:" opt; do
     S) action=search
       ;;
     t) title=$OPTARG
+      ;;
+    b) notebook=$OPTARG
+      ;;
+    f) folder=$OPTARG
       ;;
   esac
 done
@@ -50,7 +75,17 @@ fi
 shift $((OPTIND-1))
 message=$@
 
-echo "action: $action, title: $title, message: $message"
+if [ -z "$notebook" ]
+then
+  if [ -z "$NOTEBOOK" ]
+  then
+    notebook=$(pwd)
+  else
+    notebook=$NOTEBOOK
+  fi
+fi
+
+echo "action: $action, notebook: $notebook, title: $title, message: $message"
 case "$action" in
   new) new_note
     ;;
