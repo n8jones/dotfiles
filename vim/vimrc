@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 syntax on
+colorscheme elflord
 filetype plugin indent on
 set number relativenumber
 set wildignore+=*\\target\\*,*\\.svn\\*,*\\.git\\*,*\\workspace\\*
