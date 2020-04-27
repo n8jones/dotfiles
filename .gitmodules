@@ -4,9 +4,6 @@
 [submodule "vim/pack/plugins/start/ctrlpvim"]
 	path = vim/pack/plugins/start/ctrlpvim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
-[submodule "vim/pack/plugins/start/vim-javacomplete2"]
-	path = vim/pack/plugins/start/vim-javacomplete2
-	url = https://github.com/artur-shaik/vim-javacomplete2.git
 [submodule "vim/pack/plugins/start/todo.txt"]
 	path = vim/pack/plugins/start/todo.txt
 	url = https://github.com/dbeniamine/todo.txt-vim.git
