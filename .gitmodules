@@ -19,3 +19,12 @@
 [submodule "vim/pack/plugins/start/tomasiser-vim-code-dark"]
 	path = vim/pack/plugins/start/tomasiser-vim-code-dark
 	url = https://github.com/tomasiser/vim-code-dark.git
+[submodule "vim/pack/plugins/start/prabirshrestha-async"]
+	path = vim/pack/plugins/start/prabirshrestha-async
+	url = https://github.com/prabirshrestha/async.vim
+[submodule "vim/pack/plugins/start/prabirshrestha-vim-lsp"]
+	path = vim/pack/plugins/start/prabirshrestha-vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp.git
+[submodule "vim/pack/plugins/start/mattn-vim-lsp-settings"]
+	path = vim/pack/plugins/start/mattn-vim-lsp-settings
+	url = https://github.com/mattn/vim-lsp-settings.git
