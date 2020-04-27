@@ -16,3 +16,6 @@
 [submodule "vim/pack/plugins/start/vim-airline"]
 	path = vim/pack/plugins/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vim/pack/plugins/start/tomasiser-vim-code-dark"]
+	path = vim/pack/plugins/start/tomasiser-vim-code-dark
+	url = https://github.com/tomasiser/vim-code-dark.git
