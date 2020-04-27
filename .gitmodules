@@ -37,3 +37,6 @@
 [submodule "vim/pack/plugins/start/christoomey-vim-tmux-navigator"]
 	path = vim/pack/plugins/start/christoomey-vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "vim/pack/plugins/start/ptzz-lf"]
+	path = vim/pack/plugins/start/ptzz-lf
+	url = https://github.com/ptzz/lf.vim.git
