@@ -1,9 +1,6 @@
 [submodule "vim/pack/plugins/start/vim-surround"]
 	path = vim/pack/plugins/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/pack/plugins/start/nerdtree"]
-	path = vim/pack/plugins/start/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
 [submodule "vim/pack/plugins/start/ctrlpvim"]
 	path = vim/pack/plugins/start/ctrlpvim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
@@ -16,12 +13,30 @@
 [submodule "vim/pack/plugins/start/ack.vim"]
 	path = vim/pack/plugins/start/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "vim/pack/plugins/start/sheerun-vim-polyglot"]
-	path = vim/pack/plugins/start/sheerun-vim-polyglot
-	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "vim/pack/plugins/start/vim-airline"]
 	path = vim/pack/plugins/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
-[submodule "vim/pack/plugins/start/tpope-vim-fugitive"]
-	path = vim/pack/plugins/start/tpope-vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vim/pack/plugins/start/tomasiser-vim-code-dark"]
+	path = vim/pack/plugins/start/tomasiser-vim-code-dark
+	url = https://github.com/tomasiser/vim-code-dark.git
+[submodule "vim/pack/plugins/start/prabirshrestha-async"]
+	path = vim/pack/plugins/start/prabirshrestha-async
+	url = https://github.com/prabirshrestha/async.vim
+[submodule "vim/pack/plugins/start/prabirshrestha-vim-lsp"]
+	path = vim/pack/plugins/start/prabirshrestha-vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp.git
+[submodule "vim/pack/plugins/start/mattn-vim-lsp-settings"]
+	path = vim/pack/plugins/start/mattn-vim-lsp-settings
+	url = https://github.com/mattn/vim-lsp-settings.git
+[submodule "vim/pack/plugins/start/prabirshrestha-asyncomplete"]
+	path = vim/pack/plugins/start/prabirshrestha-asyncomplete
+	url = https://github.com/prabirshrestha/asyncomplete.vim.git
+[submodule "vim/pack/plugins/start/prabirshrestha-asyncomplete-lsp"]
+	path = vim/pack/plugins/start/prabirshrestha-asyncomplete-lsp
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
+[submodule "vim/pack/plugins/start/christoomey-vim-tmux-navigator"]
+	path = vim/pack/plugins/start/christoomey-vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "vim/pack/plugins/start/ptzz-lf"]
+	path = vim/pack/plugins/start/ptzz-lf
+	url = https://github.com/ptzz/lf.vim.git
