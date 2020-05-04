@@ -24,6 +24,7 @@ export PATH="/usr/local/opt/gettext/bin:$PATH"
 alias jekyll='docker run --rm -it -v "$PWD:/srv/jekyll" -v "/Users/jonesn7/dev/jekyll/bundle:/usr/local/bundle" -p "4000:4000" jekyll/builder jekyll'
 
 alias drr='docker run --rm -it -v "$PWD:/current" -w "/current"'
+alias v='vim'
 
 export PATH="/usr/local/opt/helm@2/bin:$PATH"
 export PATH="$HOME/dotfiles/bin:$PATH"
