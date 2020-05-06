@@ -40,3 +40,6 @@
 [submodule "vim/pack/plugins/start/ptzz-lf"]
 	path = vim/pack/plugins/start/ptzz-lf
 	url = https://github.com/ptzz/lf.vim.git
+[submodule "vim/pack/plugins/start/junegunn-fzf.vim"]
+	path = vim/pack/plugins/start/junegunn-fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git

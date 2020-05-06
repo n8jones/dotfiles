@@ -114,3 +114,5 @@ set filetype=java
 highlight link javaScopeDecl Statement
 highlight link javaType Type
 highlight link javaDocTags PreProc
+
+set rtp+=/usr/local/opt/fzf
