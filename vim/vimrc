@@ -25,6 +25,7 @@ vnoremap <D-p> "+p
 nmap <Leader>tf :NERDTreeToggl<CR>
 nmap <Leader>to :pedit ~/Documents/todo.txt<CR>
 nmap <Leader>ns :CtrlP ~/Documents/Notes/<CR>
+nmap <Leader>g :GFiles<CR>
 
 function CreateNote(...)
   let t = localtime()
@@ -116,3 +117,6 @@ highlight link javaType Type
 highlight link javaDocTags PreProc
 
 set rtp+=/usr/local/opt/fzf
+
+let g:vimwiki_list = [{'path': '~/Documents/Notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
