@@ -10,7 +10,7 @@ set wildignore+=*\\target\\*,*\\.svn\\*,*\\.git\\*,*\\workspace\\*
 set ruler
 set visualbell
 set encoding=utf-8
-set ts=2 sts=2 sw=2 expandtab
+set ts=4 sts=4 sw=4 expandtab
 set laststatus=2
 set list
 set listchars=eol:$,tab:-⇥,trail:~,extends:>,precedes:<
@@ -26,13 +26,14 @@ nmap <Leader>tf :NERDTreeToggl<CR>
 nmap <Leader>to :pedit ~/Documents/todo.txt<CR>
 nmap <Leader>ns :CtrlP ~/Documents/Notes/<CR>
 nmap <Leader>g :GFiles<CR>
+nmap <Leader>b :Buffers<CR>
 
 function CreateNote(...)
   let t = localtime()
   let name = join(a:000)
   let dirname =  strftime("~/Documents/Notes/%Y/%m/", t)
   let notename = strftime("%Y%m%dT%H%M%S")
-  if(strlen(name) > 0) 
+  if(strlen(name) > 0)
     let notename = notename . '-' . tolower(join(split(name, " "), "_"))[0:30]
   endif
   let notename = notename . '.md'
@@ -69,7 +70,7 @@ augroup END
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_cmd = 'CtrlPMixed'
 
-if executable('ag') 
+if executable('ag')
   let g:ackprg = 'ag --vimgrep'
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
@@ -118,5 +119,6 @@ highlight link javaDocTags PreProc
 
 set rtp+=/usr/local/opt/fzf
 
-let g:vimwiki_list = [{'path': '~/Documents/Notes/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = []
+let g:vimwiki_list = g:vimwiki_list + [{'path': '~/Documents/Notes/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = g:vimwiki_list + [{'path': '~/projects/stem/docs/', 'syntax': 'markdown', 'ext': '.md'}]
