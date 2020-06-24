@@ -24,13 +24,14 @@ export PATH="/usr/local/opt/gettext/bin:$PATH"
 alias jekyll='docker run --rm -it -v "$PWD:/srv/jekyll" -v "/Users/jonesn7/dev/jekyll/bundle:/usr/local/bundle" -p "4000:4000" jekyll/builder jekyll'
 
 alias drr='docker run --rm -it -v "$PWD:/current" -w "/current"'
-alias v='vim'
-alias vi='vim'
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
 
 export PATH="/usr/local/opt/helm@2/bin:$PATH"
 export PATH="$HOME/dotfiles/bin:$PATH"
 export PATH="$HOME/eclipse/install:$PATH"
-export EDITOR='vim'
+export EDITOR='nvim'
 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval `ssh-agent -s`
