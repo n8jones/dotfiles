@@ -28,6 +28,8 @@ alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 
+alias sv='tmux split-window -h nvim'
+
 export PATH="/usr/local/opt/helm@2/bin:$PATH"
 export PATH="$HOME/dotfiles/bin:$PATH"
 export PATH="$HOME/eclipse/install:$PATH"
@@ -37,3 +39,12 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval `ssh-agent -s`
     ssh-add
 fi
+export VAGRANT_EXPERIMENTAL="disks"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+[[ -s "$HOME/.local/profile" ]] && source "$HOME/.local/profile"
+
