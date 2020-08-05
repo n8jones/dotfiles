@@ -1,8 +1,8 @@
 " Plugins
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
@@ -28,7 +28,6 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:lf_replace_netrw = 1
 let g:vimwiki_list = []
 let g:vimwiki_list = g:vimwiki_list + [{'path': '~/Documents/Notes/', 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_list = g:vimwiki_list + [{'path': '~/projects/stem/docs/', 'syntax': 'markdown', 'ext': '.md'}]
 
 set clipboard+=unnamedplus
 set expandtab
