@@ -46,5 +46,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+export GPG_TTY=$(tty)
+
 [[ -s "$HOME/.local/profile" ]] && source "$HOME/.local/profile"
 
