@@ -17,8 +17,10 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'vimwiki/vimwiki'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-solargraph'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'dag/vim-fish'
 call plug#end()
 
 " Settings
