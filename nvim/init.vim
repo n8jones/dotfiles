@@ -1,8 +1,8 @@
 " Plugins
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+let plug_script_path = stdpath('data') . '/site/autoload/plug.vim'
+if empty(glob(plug_script_path))
+  execute 'silent !curl -fLo ' . plug_script_path . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
@@ -38,11 +38,11 @@ set listchars=eol:$,tab:-⇥,trail:~,extends:>,precedes:<
 set mouse=a
 set number
 set relativenumber
-set sts=4
-set sw=4
-set ts=4
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
 set foldmethod=marker
-set wildignore+=*\\target\\*,*\\.svn\\*,*\\.git\\*,*\\workspace\\*
+set wildignore+=*\\target\\*,*\\.svn\\*,*\\.git\\*,*\\workspace\\*,*\\build\\*
 set hidden " TextEdit might fail if hidden is not set.
 set nobackup " Some servers have issues with backup files, see #649.
 set nowritebackup
@@ -66,7 +66,7 @@ inoremap <S-Tab> <C-D>
 nmap <Leader>F :split<CR>:Lf<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>f :Lf<CR>
-nmap <Leader>g :GFiles<CR>
+nmap <Leader>g :GFiles -co --exclude-standard<CR>
 nnoremap <S-Tab> <<_
 nnoremap <Tab> >>_
 vnoremap <S-Tab> <gv
