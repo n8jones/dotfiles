@@ -6,10 +6,12 @@ if empty(glob(plug_script_path))
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
+    Plug 'jvirtanen/vim-hcl'
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'morhetz/gruvbox'
+    Plug 'voldikss/vim-floaterm'
     Plug 'ptzz/lf.vim'
     Plug 'rbgrouleff/bclose.vim'
     Plug 'tpope/vim-fugitive'
@@ -21,6 +23,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'dag/vim-fish'
+    Plug 'luochen1990/rainbow'
 call plug#end()
 
 " Settings
@@ -30,6 +33,7 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:lf_replace_netrw = 1
 let g:vimwiki_list = []
 let g:vimwiki_list = g:vimwiki_list + [{'path': '~/Documents/Notes/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:rainbow_active = 1
 
 set clipboard+=unnamedplus
 set expandtab
@@ -197,3 +201,12 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+echo 'End of init.vim'
+
+let localrc = getcwd() . '/.vimrc'
+if filereadable(localrc)
+  echo 'Loading ' . localrc
+  execute 'source ' . localrc
+endif
+
