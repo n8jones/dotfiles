@@ -6,28 +6,29 @@ if empty(glob(plug_script_path))
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
-  Plug 'jvirtanen/vim-hcl'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'dag/vim-fish'
+  Plug 'hrsh7th/nvim-compe'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/goyo.vim'
+  Plug 'jvirtanen/vim-hcl'
+  Plug 'luochen1990/rainbow'
   Plug 'morhetz/gruvbox'
-  Plug 'voldikss/vim-floaterm'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'ptzz/lf.vim'
   Plug 'rbgrouleff/bclose.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-surround'
-  Plug 'vimwiki/vimwiki'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'dag/vim-fish'
-  Plug 'luochen1990/rainbow'
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'hrsh7th/nvim-compe'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'vimwiki/vimwiki'
+  Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " Settings
@@ -62,7 +63,7 @@ set wildignore+=*\\target\\*,*\\.svn\\*,*\\.git\\*,*\\workspace\\*,*\\build\\*
 " Key mappings
 imap jj <Esc>
 inoremap <S-Tab> <C-D>
-nmap <Leader>F :split<CR>:Lf<CR>
+inoremap <C-G>d <C-R>=strftime('%y%m%d%H%M')<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>f :Lf<CR>
 nmap <Leader>g :GFiles -co --exclude-standard<CR>
