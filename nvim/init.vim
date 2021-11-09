@@ -8,7 +8,15 @@ endif
 call plug#begin(stdpath('data') . '/plugged')
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'dag/vim-fish'
-  Plug 'hrsh7th/nvim-compe'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/cmp-calc'
+  Plug 'hrsh7th/cmp-emoji'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-vsnip'
+  Plug 'hrsh7th/vim-vsnip'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
@@ -42,7 +50,7 @@ let g:rainbow_active = 1
 
 set clipboard+=unnamedplus
 set cmdheight=2 " Give more space for displaying messages.
-set completeopt=menuone,noselect
+set completeopt=menu,menuone,noselect
 set expandtab
 set foldmethod=marker
 set hidden " TextEdit might fail if hidden is not set.
