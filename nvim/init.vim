@@ -37,6 +37,7 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'vimwiki/vimwiki'
   Plug 'voldikss/vim-floaterm'
+  Plug 'mfussenegger/nvim-jdtls'
 call plug#end()
 
 " Settings
@@ -81,7 +82,6 @@ nnoremap <leader>tb <cmd>Telescope buffers<cr>
 nnoremap <leader>th <cmd>Telescope help_tags<cr>
 nnoremap <leader>ts <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <leader>tS <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
-
 nnoremap <S-Tab> <<_
 nnoremap <Tab> >>_
 vnoremap <S-Tab> <gv
@@ -89,7 +89,7 @@ vnoremap <Tab> >gv
 
 colorscheme gruvbox
 
-lua require('myluaconfig')
+lua require('myluaconfig').setup()
 
 echo 'End of init.vim'
 
