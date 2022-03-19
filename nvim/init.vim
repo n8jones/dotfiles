@@ -68,6 +68,7 @@ set softtabstop=2
 set tabstop=2
 set updatetime=300
 set wildignore+=*\\target\\*,*\\.svn\\*,*\\.git\\*,*\\workspace\\*,*\\build\\*
+set linebreak
 
 " Key mappings
 imap jj <Esc>
@@ -82,10 +83,15 @@ nnoremap <leader>tb <cmd>Telescope buffers<cr>
 nnoremap <leader>th <cmd>Telescope help_tags<cr>
 nnoremap <leader>ts <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <leader>tS <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+
 nnoremap <S-Tab> <<_
 nnoremap <Tab> >>_
 vnoremap <S-Tab> <gv
 vnoremap <Tab> >gv
+vnoremap <silent> k gk
+vnoremap <silent> j gj
 
 colorscheme gruvbox
 
