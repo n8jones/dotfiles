@@ -52,12 +52,15 @@ function M.setup()
         vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       end,
     },
+    mapping = cmp.mapping.preset.insert({
+      -- Your configuration here.
+    }),
     sources = cmp.config.sources(M.default_sources)
   })
 
 
   local lspconfig = require'lspconfig'
-  local sumneko_root_path = vim.fn.expand('$HOME/dev/3rdparty/lua-language-server')
+  local sumneko_root_path = vim.fn.expand('$HOME/DEC/dev/3rdparty/lua-language-server')
   local sumneko_binary = sumneko_root_path.."/bin/".. M.system_name .."/lua-language-server"
   lspconfig.sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
@@ -83,7 +86,18 @@ function M.setup()
   }
 
   require'nvim-treesitter.configs'.setup {
-    --ensure_installed = "maintained",
+    ensure_installed = {
+      "java",
+      "markdown",
+      "rust",
+      "c",
+      "html",
+      "json",
+      "javascript",
+      "lua",
+      "vim",
+      "yaml"
+    },
     highlight = {
       enable = true
     },

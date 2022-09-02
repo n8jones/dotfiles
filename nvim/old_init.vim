@@ -28,16 +28,18 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-treesitter/nvim-treesitter'
+  "Plug 'nvim-treesitter/nvim-treesitter'
+  "Plug 'nvim-treesitter/playground'
   Plug 'ptzz/lf.vim'
   Plug 'rbgrouleff/bclose.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-surround'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'vimwiki/vimwiki'
   Plug 'voldikss/vim-floaterm'
   Plug 'mfussenegger/nvim-jdtls'
+  Plug 'mickael-menu/zk-nvim'
+  Plug 'ixru/nvim-markdown'
 call plug#end()
 
 " Settings
@@ -68,7 +70,6 @@ set softtabstop=2
 set tabstop=2
 set updatetime=300
 set wildignore+=*\\target\\*,*\\.svn\\*,*\\.git\\*,*\\workspace\\*,*\\build\\*
-set linebreak
 if filereadable('./gradlew')
   set makeprg=./gradlew\ --console=plain\ $*
 endif
@@ -86,15 +87,15 @@ nnoremap <leader>tb <cmd>Telescope buffers<cr>
 nnoremap <leader>th <cmd>Telescope help_tags<cr>
 nnoremap <leader>ts <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <leader>tS <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
-nnoremap <silent> k gk
-nnoremap <silent> j gj
-
+nnoremap <C-p> <cmd>bprevious<cr>
+nnoremap <C-n> <cmd>bnext<cr>
+nnoremap <CR> <cmd>lua vim.lsp.buf.definition()<cr>
 nnoremap <S-Tab> <<_
 nnoremap <Tab> >>_
+nnoremap <C-Space><C-Space> <cmd>FloatermToggle<CR>
 vnoremap <S-Tab> <gv
 vnoremap <Tab> >gv
-vnoremap <silent> k gk
-vnoremap <silent> j gj
+tnoremap <C-Space><C-Space> <C-\><C-n>
 
 colorscheme gruvbox
 
