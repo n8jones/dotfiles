@@ -24,8 +24,9 @@ function M.lsp_on_attach(_, bufnr)
   local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>Telescope lsp_code_actions<CR>', opts)
+  buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
 end
 
 function M.append_array(t1, t2)
@@ -99,7 +100,8 @@ function M.setup()
       "yaml"
     },
     highlight = {
-      enable = true
+      enable = true,
+      additional_vim_regex_highlighting = { "markdown" },
     },
     indent = {
       enable = true
@@ -120,6 +122,22 @@ function M.setup()
   -- To get fzf loaded and working with telescope, you need to call
   -- load_extension, somewhere after setup function:
   require('telescope').load_extension('fzf')
+
+  require("zk").setup({
+    picker = "telescope",
+    lsp = {
+      config = {
+        cmd = { "zk", "lsp" },
+        name = "zk",
+      },
+
+      auto_attach = {
+        enabled = true,
+        filetypes = { "markdown" },
+      },
+    },
+  })
+
 end -- setup()
 
 return M
