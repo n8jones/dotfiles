@@ -59,33 +59,6 @@ function M.setup()
     sources = cmp.config.sources(M.default_sources)
   })
 
-
-  local lspconfig = require'lspconfig'
-  local sumneko_root_path = vim.fn.expand('$HOME/DEC/dev/3rdparty/lua-language-server')
-  local sumneko_binary = sumneko_root_path.."/bin/".. M.system_name .."/lua-language-server"
-  lspconfig.sumneko_lua.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-    settings = {
-      Lua = {
-        runtime = {
-          version = 'LuaJIT',
-          path = vim.split(package.path, ';'),
-        },
-        diagnostics = {
-          globals = {'vim'},
-        },
-        workspace = {
-          library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-          },
-        },
-        telemetry = { enable = false },
-      },
-    },
-    on_attach = M.lsp_on_attach
-  }
-
   require'nvim-treesitter.configs'.setup {
     ensure_installed = {
       "java",
