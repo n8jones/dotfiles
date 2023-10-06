@@ -28,7 +28,8 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-treesitter/nvim-treesitter'
+  "Plug 'nvim-treesitter/nvim-treesitter'
+  "Plug 'nvim-treesitter/playground'
   Plug 'ptzz/lf.vim'
   Plug 'rbgrouleff/bclose.vim'
   Plug 'tpope/vim-fugitive'
@@ -87,6 +88,8 @@ nnoremap <leader>tb <cmd>Telescope buffers<cr>
 nnoremap <leader>th <cmd>Telescope help_tags<cr>
 nnoremap <leader>ts <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <leader>tS <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
+nnoremap <C-p> <cmd>bprevious<cr>
+nnoremap <C-n> <cmd>bnext<cr>
 nnoremap <CR> <cmd>lua vim.lsp.buf.definition()<cr>
 nnoremap <S-Tab> <<_
 nnoremap <Tab> >>_

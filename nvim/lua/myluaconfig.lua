@@ -59,6 +59,7 @@ function M.setup()
     sources = cmp.config.sources(M.default_sources)
   })
 
+  --[[
   require'nvim-treesitter.configs'.setup {
     ensure_installed = {
       "java",
@@ -80,6 +81,8 @@ function M.setup()
       enable = true
     }
   }
+
+  --]]
 
   require('telescope').setup {
     extensions = {
