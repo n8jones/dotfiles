@@ -7,6 +7,20 @@ require('jdtls').start_or_attach({
     '-data',
     tostring(vim.fn.getenv 'JDTLS_WORKSPACE'),
   },
+  settings = {
+    java = {
+      signatureHelp = { enabled = true },
+      completion = {
+        favoriteStaticMembers = {},
+        filteredTypes = {
+          "com.sun.*",
+          "java.awt.*",
+          "jdk.*",
+          "sun.*",
+        },
+      },
+    }
+  },
   on_attach = function(client, bufnr)
     require('jdtls.setup').add_commands()
   end,
