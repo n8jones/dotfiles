@@ -43,7 +43,6 @@ local function cmp_config()
 end
 
 local function lspconfig_config()
-  -- This is where all the LSP shenanigans will live
   local lsp_zero = require('lsp-zero')
   lsp_zero.extend_lspconfig()
 
@@ -55,8 +54,21 @@ local function lspconfig_config()
     ensure_installed = {'jdtls'},
     handlers = {
       lsp_zero.default_setup,
+      jdtls = lsp_zero.noop, -- delegate to java.lua
     }
   })
+end
+
+local function treesitter_config()
+  require'nvim-treesitter.configs'.setup {
+    auto_install = true,
+    highlight = {
+      enable = true,
+      disable = {
+        "markdown", -- Use the highlighting from zk plugin
+      },
+    },
+  }
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -73,6 +85,7 @@ require("lazy").setup({
   {'morhetz/gruvbox'},
   {'neovim/nvim-lspconfig', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'williamboman/mason-lspconfig.nvim'}, }, config = lspconfig_config },
   {'nvim-telescope/telescope.nvim', cmd = 'Telescope', dependencies = { 'nvim-telescope/telescope-fzf-native.nvim', 'nvim-lua/plenary.nvim' } },
+  {'nvim-treesitter/nvim-treesitter', config = treesitter_config},
   {'ptzz/lf.vim'},
   {'tpope/vim-fugitive', cmd = 'Git' },
   {'tpope/vim-surround'},
