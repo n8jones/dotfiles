@@ -1,11 +1,15 @@
 local jdtls_bin = vim.fn.stdpath("data") .. "/mason/bin/jdtls"
-vim.print("jdtls_bin: " .. jdtls_bin)
+local rootDir = vim.fs.dirname(vim.fs.find({'settings.gradle', '.git'}, { upward = true })[1])
+local wsDir = vim.fn.getenv('JDTLS_WORKSPACE')
+if (wsDir == vim.NIL or string.len(wsDir) == 0) then
+  wsDir = rootDir .. '/../.workspace/' .. vim.fs.basename(rootDir) .. '.workspace'
+end
 require('jdtls').start_or_attach({
-  root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
+  root_dir = rootDir,
   cmd = {
     jdtls_bin,
     '-data',
-    tostring(vim.fn.getenv 'JDTLS_WORKSPACE'),
+    wsDir,
   },
   settings = {
     java = {
@@ -18,10 +22,12 @@ require('jdtls').start_or_attach({
           "jdk.*",
           "sun.*",
         },
+        importOrder = {""},
       },
     }
   },
-  on_attach = function(client, bufnr)
+  on_attach = function(_, _)
     require('jdtls.setup').add_commands()
   end,
 })
+vim.bo.expandtab = false
