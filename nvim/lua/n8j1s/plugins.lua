@@ -1,6 +1,6 @@
 local function zk_config()
   require("zk").setup({
-    picker = "select",
+    picker = "telescope",
     lsp = {
       config = {
         cmd = { "zk", "lsp" },
