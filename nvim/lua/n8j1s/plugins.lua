@@ -21,13 +21,10 @@ local function lsp_zero_init()
 end
 
 local function cmp_config()
-  -- Here is where you configure the autocompletion settings.
   local lsp_zero = require('lsp-zero')
   lsp_zero.extend_cmp()
 
-  -- And you can configure cmp even more, if you want to.
   local cmp = require('cmp')
-  local cmp_action = lsp_zero.cmp_action()
 
   cmp.setup({
     formatting = lsp_zero.cmp_format(),
@@ -35,10 +32,13 @@ local function cmp_config()
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-u>'] = cmp.mapping.scroll_docs(-4),
       ['<C-d>'] = cmp.mapping.scroll_docs(4),
-      ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-      ['<C-b>'] = cmp_action.luasnip_jump_backward(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    })
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'buffer' },
+      { name = 'path' },
+    }),
   })
 end
 
@@ -79,7 +79,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {'christoomey/vim-tmux-navigator'},
-  {'hrsh7th/nvim-cmp', event = 'InsertEnter', dependencies = { {'L3MON4D3/LuaSnip'}, }, config = cmp_config },
+  {'hrsh7th/vim-vsnip', dependencies = { {'hrsh7th/vim-vsnip-integ'}, {'rafamadriz/friendly-snippets'}, } },
+  {'hrsh7th/nvim-cmp', event = 'InsertEnter', dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-path'}, {'hrsh7th/cmp-cmdline'} }, config = cmp_config },
   {'mfussenegger/nvim-jdtls'},
   {'mickael-menu/zk-nvim', config = zk_config },
   {'morhetz/gruvbox'},
