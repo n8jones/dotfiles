@@ -88,7 +88,7 @@ require("lazy").setup({
   {'nvim-telescope/telescope.nvim', cmd = 'Telescope', dependencies = { 'nvim-telescope/telescope-fzf-native.nvim', 'nvim-lua/plenary.nvim' } },
   {'nvim-treesitter/nvim-treesitter', config = treesitter_config},
   {'ptzz/lf.vim'},
-  {'tpope/vim-fugitive', cmd = 'Git' },
+  {'tpope/vim-fugitive'},
   {'tpope/vim-surround'},
   {'voldikss/vim-floaterm'},
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false, init = lsp_zero_init, },
