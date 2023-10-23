@@ -1,3 +1,9 @@
+local function gruvbox_config()
+  vim.opt.background = 'dark'
+  vim.g.gruvbox_contrast_dark = 'hard'
+  vim.cmd.colorscheme("gruvbox")
+end
+
 local function zk_config()
   require("zk").setup({
     picker = "telescope",
@@ -71,6 +77,11 @@ local function treesitter_config()
   }
 end
 
+local function telescope_tabs_config()
+  require'telescope-tabs'.setup{
+  }
+end
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath, })
@@ -81,13 +92,15 @@ require("lazy").setup({
   {'christoomey/vim-tmux-navigator'},
   {'hrsh7th/vim-vsnip', dependencies = { {'hrsh7th/vim-vsnip-integ'}, {'rafamadriz/friendly-snippets'}, } },
   {'hrsh7th/nvim-cmp', event = 'InsertEnter', dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-path'}, {'hrsh7th/cmp-cmdline'} }, config = cmp_config },
+  {'LukasPietzschmann/telescope-tabs', dependencies = { 'nvim-telescope/telescope.nvim' }, config = telescope_tabs_config },
   {'mfussenegger/nvim-jdtls'},
   {'mickael-menu/zk-nvim', config = zk_config },
-  {'morhetz/gruvbox'},
+  {'morhetz/gruvbox', config = gruvbox_config, priority = 1000, lazy = false},
   {'neovim/nvim-lspconfig', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'williamboman/mason-lspconfig.nvim'}, }, config = lspconfig_config },
-  {'nvim-telescope/telescope.nvim', cmd = 'Telescope', dependencies = { 'nvim-telescope/telescope-fzf-native.nvim', 'nvim-lua/plenary.nvim' } },
+  {'nvim-telescope/telescope.nvim', dependencies = { 'nvim-telescope/telescope-fzf-native.nvim', 'nvim-lua/plenary.nvim', } },
   {'nvim-treesitter/nvim-treesitter', config = treesitter_config},
   {'ptzz/lf.vim'},
+  {'sindrets/diffview.nvim'},
   {'tpope/vim-fugitive'},
   {'tpope/vim-surround'},
   {'voldikss/vim-floaterm'},
