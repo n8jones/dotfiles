@@ -1,85 +1,7 @@
-local function gruvbox_config()
-  vim.opt.background = 'dark'
-  vim.g.gruvbox_contrast_dark = 'hard'
-  vim.cmd.colorscheme("gruvbox")
-end
-
-local function zk_config()
-  require("zk").setup({
-    picker = "telescope",
-    lsp = {
-      config = {
-        cmd = { "zk", "lsp" },
-        name = "zk",
-      },
-      auto_attach = {
-        enabled = true,
-        filetypes = { "markdown" },
-      },
-    },
-  })
-end
-
-local function lsp_zero_init()
-  -- Disable automatic setup, we are doing it manually
-  vim.g.lsp_zero_extend_cmp = 0
-  vim.g.lsp_zero_extend_lspconfig = 0
-end
-
-local function cmp_config()
-  local lsp_zero = require('lsp-zero')
-  lsp_zero.extend_cmp()
-
-  local cmp = require('cmp')
-
-  cmp.setup({
-    formatting = lsp_zero.cmp_format(),
-    mapping = cmp.mapping.preset.insert({
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-d>'] = cmp.mapping.scroll_docs(4),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'buffer' },
-      { name = 'path' },
-    }),
-  })
-end
-
-local function lspconfig_config()
-  local lsp_zero = require('lsp-zero')
-  lsp_zero.extend_lspconfig()
-
-  lsp_zero.on_attach(function(client, bufnr)
-    lsp_zero.default_keymaps({buffer = bufnr})
-  end)
-
-  require('mason-lspconfig').setup({
-    ensure_installed = {'jdtls'},
-    handlers = {
-      lsp_zero.default_setup,
-      jdtls = lsp_zero.noop, -- delegate to java.lua
-    }
-  })
-end
-
-local function treesitter_config()
-  require'nvim-treesitter.configs'.setup {
-    auto_install = true,
-    highlight = {
-      enable = true,
-      disable = {
-        "markdown", -- Use the highlighting from zk plugin
-      },
-    },
-  }
-end
-
-local function telescope_tabs_config()
-  require'telescope-tabs'.setup{
-  }
+local function delegate(name)
+  return function()
+    require('n8j1s.config.' .. name).config()
+  end
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -91,20 +13,20 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {'christoomey/vim-tmux-navigator'},
   {'hrsh7th/vim-vsnip', dependencies = { {'hrsh7th/vim-vsnip-integ'}, {'rafamadriz/friendly-snippets'}, } },
-  {'hrsh7th/nvim-cmp', event = 'InsertEnter', dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-path'}, {'hrsh7th/cmp-cmdline'} }, config = cmp_config },
-  {'LukasPietzschmann/telescope-tabs', dependencies = { 'nvim-telescope/telescope.nvim' }, config = telescope_tabs_config },
+  {'hrsh7th/nvim-cmp', event = 'InsertEnter', dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-path'}, {'hrsh7th/cmp-cmdline'} }, config = delegate('cmp') },
+  {'LukasPietzschmann/telescope-tabs', dependencies = { 'nvim-telescope/telescope.nvim' }, config = delegate('telescope_tabs') },
   {'mfussenegger/nvim-jdtls'},
-  {'mickael-menu/zk-nvim', config = zk_config },
-  {'morhetz/gruvbox', config = gruvbox_config, priority = 1000, lazy = false},
-  {'neovim/nvim-lspconfig', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'williamboman/mason-lspconfig.nvim'}, }, config = lspconfig_config },
+  {'mickael-menu/zk-nvim', config = delegate('zk') },
+  {'morhetz/gruvbox', config = delegate('gruvbox'), priority = 1000, lazy = false},
+  {'neovim/nvim-lspconfig', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'williamboman/mason-lspconfig.nvim'}, }, config = delegate('lspconfig') },
   {'nvim-telescope/telescope.nvim', dependencies = { 'nvim-telescope/telescope-fzf-native.nvim', 'nvim-lua/plenary.nvim', } },
-  {'nvim-treesitter/nvim-treesitter', config = treesitter_config},
+  {'nvim-treesitter/nvim-treesitter', config = delegate('treesitter') },
   {'ptzz/lf.vim'},
   {'sindrets/diffview.nvim'},
   {'tpope/vim-fugitive'},
   {'tpope/vim-surround'},
   {'voldikss/vim-floaterm'},
-  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false, init = lsp_zero_init, },
+  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false, init = delegate('lsp_zero'), },
   {'williamboman/mason.nvim', lazy = false, config = true},
 })
 
