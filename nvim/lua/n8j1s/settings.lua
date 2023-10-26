@@ -1,4 +1,3 @@
-vim.opt.background = 'dark'
 vim.opt.expandtab = true
 vim.opt.list = true
 vim.opt.shiftwidth = 2
