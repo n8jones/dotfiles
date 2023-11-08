@@ -25,7 +25,7 @@ require("lazy").setup({
   {'sindrets/diffview.nvim'},
   {'tpope/vim-fugitive'},
   {'tpope/vim-surround'},
-  {'voldikss/vim-floaterm'},
+  {'voldikss/vim-floaterm', config = delegate('floaterm')},
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false, init = delegate('lsp_zero'), },
   {'williamboman/mason.nvim', lazy = false, config = true},
 })
