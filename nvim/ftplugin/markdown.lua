@@ -22,3 +22,42 @@ if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
   -- Open the code actions for a visual selection.
   map("v", "<leader>za", ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", opts)
 end
+local function n(...)
+  vim.keymap.set("n", ...)
+end
+n('<Leader>nj', '<Cmd>ZkNew { dir = "journal" }<CR>')
+n('<Leader>ni', '<Cmd>edit index.md<CR>')
+local function newNote()
+  local cancel_val = '--cancel--'
+  local t = vim.fn.input{prompt='Title: ', cancelreturn=cancel_val}
+  if t == cancel_val then
+    vim.print('Cancel')
+  else
+    require('zk').new { title = t }
+  end
+end
+n('<Leader>ncc', newNote)
+
+local function my_match(str, regex, ctx)
+  ctx.match = string.match(str, regex)
+  return ctx.match ~= nil
+end
+
+local function newLine()
+  local line_number = vim.fn.line(".")
+  local line = vim.api.nvim_get_current_line()
+  local prefix = nil
+  local ctx = {}
+  if my_match(line, '^- %d%d:%d%d ', ctx) then
+    prefix = '- ' .. os.date("%H:%M") .. ' '
+  elseif my_match(line, '^%w*- ', ctx)  then
+    prefix = ctx.match
+  end
+  if prefix then
+    vim.fn.append(line_number, prefix)
+    vim.fn.cursor(line_number + 1, #prefix)
+    vim.cmd('startinsert!')
+  end
+end
+
+n('<Leader>o', newLine)
