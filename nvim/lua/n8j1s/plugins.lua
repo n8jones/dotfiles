@@ -11,6 +11,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  {'akinsho/toggleterm.nvim', config = true },
   {'christoomey/vim-tmux-navigator'},
   {'hrsh7th/vim-vsnip', dependencies = { {'hrsh7th/vim-vsnip-integ'}, {'hrsh7th/cmp-vsnip'}, {'rafamadriz/friendly-snippets'}, }, config = delegate('vsnip') },
   {'hrsh7th/cmp-nvim-lsp'},
@@ -18,6 +19,7 @@ require("lazy").setup({
   {'hrsh7th/cmp-path'},
   {'hrsh7th/cmp-cmdline'},
   {'hrsh7th/nvim-cmp', event = 'InsertEnter', config = delegate('cmp') },
+  {'lmburns/lf.nvim', dependencies = {'akinsho/toggleterm.nvim'}, opts = {border = 'rounded', winblend=0}},
   {'LukasPietzschmann/telescope-tabs', dependencies = { 'nvim-telescope/telescope.nvim' }, config = delegate('telescope_tabs') },
   {'mfussenegger/nvim-jdtls'},
   {'mickael-menu/zk-nvim', config = delegate('zk') },
@@ -25,7 +27,6 @@ require("lazy").setup({
   {'neovim/nvim-lspconfig', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'williamboman/mason-lspconfig.nvim'}, }, config = delegate('lspconfig') },
   {'nvim-telescope/telescope.nvim', dependencies = { 'nvim-telescope/telescope-fzf-native.nvim', 'nvim-lua/plenary.nvim', } },
   {'nvim-treesitter/nvim-treesitter', config = delegate('treesitter') },
-  {'ptzz/lf.vim'},
   {'sindrets/diffview.nvim'},
   {'tpope/vim-fugitive'},
   {'tpope/vim-surround'},
