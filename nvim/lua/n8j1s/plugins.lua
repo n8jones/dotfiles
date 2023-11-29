@@ -19,7 +19,7 @@ require("lazy").setup({
   {'hrsh7th/cmp-path'},
   {'hrsh7th/cmp-cmdline'},
   {'hrsh7th/nvim-cmp', event = 'InsertEnter', config = delegate('cmp') },
-  {'lmburns/lf.nvim', dependencies = {'akinsho/toggleterm.nvim'}, opts = {border = 'rounded', winblend=0}},
+  {'lmburns/lf.nvim', dependencies = {'akinsho/toggleterm.nvim'}, opts = {border = 'rounded', winblend=0, highlights = {NormalFloat = { guifg = 'Black'}}, }},
   {'LukasPietzschmann/telescope-tabs', dependencies = { 'nvim-telescope/telescope.nvim' }, config = delegate('telescope_tabs') },
   {'mfussenegger/nvim-jdtls'},
   {'mickael-menu/zk-nvim', config = delegate('zk') },
