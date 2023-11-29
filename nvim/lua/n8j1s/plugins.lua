@@ -25,7 +25,6 @@ require("lazy").setup({
   {'neovim/nvim-lspconfig', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, dependencies = { {'hrsh7th/cmp-nvim-lsp'}, {'williamboman/mason-lspconfig.nvim'}, }, config = delegate('lspconfig') },
   {'nvim-telescope/telescope.nvim', dependencies = { 'nvim-telescope/telescope-fzf-native.nvim', 'nvim-lua/plenary.nvim', } },
   {'nvim-treesitter/nvim-treesitter', config = delegate('treesitter') },
-  {'ptzz/lf.vim'},
   {'sindrets/diffview.nvim'},
   {'tpope/vim-fugitive'},
   {'tpope/vim-surround'},
