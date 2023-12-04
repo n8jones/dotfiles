@@ -5,6 +5,10 @@ function M.config()
 
   lsp_zero.on_attach(function(client, bufnr)
     lsp_zero.default_keymaps({buffer = bufnr})
+    local km = require('n8j1s.km')
+    km.n('<leader>ca', vim.lsp.buf.code_action)
+    km.n('gd', vim.lsp.buf.definition)
+    km.n('K', vim.lsp.buf.hover);
   end)
 
   require('mason-lspconfig').setup({
