@@ -12,6 +12,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {'christoomey/vim-tmux-navigator'},
+  {'folke/which-key.nvim', event = "VeryLazy", opts = { } },
   {'hrsh7th/vim-vsnip', dependencies = { {'hrsh7th/vim-vsnip-integ'}, {'hrsh7th/cmp-vsnip'}, {'rafamadriz/friendly-snippets'}, }, config = delegate('vsnip') },
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/cmp-buffer'},
