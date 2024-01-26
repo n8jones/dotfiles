@@ -46,4 +46,5 @@ if require("zk.util").notebook_root(vim.fn.getcwd()) ~= nil then
   km.n('<Leader>nj', '<Cmd>ZkNew { dir = "journal" }<CR>')
   km.n('<Leader>ni', '<Cmd>edit index.md<CR>')
   km.n('<Leader>ncc', newNote)
+  km.n('<Leader>tf', '<Cmd>ZkNotes { sort = {"modified-"} }<CR>')
 end
