@@ -1,0 +1,19 @@
+{
+  "journal": {
+    "prefix": ["journal"],
+    "body": [
+      "---",
+      "date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE",
+      "---",
+      "# $CURRENT_DAY_NAME $CURRENT_MONTH_NAME $CURRENT_DATE, $CURRENT_YEAR",
+      "",
+      "## Metadata",
+      "- tags:",
+      "  - #type/Journal",
+      "",
+      "## Time Log",
+      "",
+      "- $CURRENT_HOUR:$CURRENT_MINUTE Communications"
+    ]
+  }
+}
