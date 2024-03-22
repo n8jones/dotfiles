@@ -6,6 +6,11 @@ function M.config()
   local cmp = require('cmp')
 
   cmp.setup({
+   snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
     formatting = lsp_zero.cmp_format(),
     mapping = cmp.mapping.preset.insert({
       ['<C-Space>'] = cmp.mapping.complete(),
@@ -17,6 +22,8 @@ function M.config()
       { name = 'nvim_lsp' },
       { name = 'buffer' },
       { name = 'path' },
+      { name = 'vsnip' },
+      { name = 'emoji' },
     }),
   })
 end
