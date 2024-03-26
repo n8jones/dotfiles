@@ -1,11 +1,3 @@
---[[
-- 08:01 Start
-- 10:30 Second task
-- 12:33 Something else @SCA
-- 13:00 @foo @bar
-- 15:00 /stop
-
---]]
 local function format_mins(mins)
   return string.format('%02d:%02d', mins/60, math.fmod(mins, 60))
 end
