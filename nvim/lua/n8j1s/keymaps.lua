@@ -8,8 +8,53 @@ local function toggle_my_terminal()
   end
 end
 
+local function save_source()
+  vim.cmd.write()
+  vim.cmd.source('%')
+end
+
+local function random_string(num)
+  local chars = 'abcdefghijklmnopqrstuvwxyz0123456789'
+  local str = ''
+  for i=1,num do
+    local r = math.random(#chars)
+    str = str .. string.char(string.byte(chars, r))
+  end
+  return str
+end
+
+local function jump_next()
+  if vim.fn['vsnip#jumpable'](1) then
+    return '<Plug>(vsnip-jump-next)'
+  else
+    return '<Tab>'
+  end
+end
+
+local function jump_back()
+  if vim.fn['vsnip#jumpable'](-1) then
+    return '<Plug>(vsnip-jump-prev)'
+  else
+    return '<S-Tab>'
+  end
+end
+
+local function expand()
+  if vim.fn['vsnip#expandable']() then
+    return '<Plug>(vsnip-expand)'
+  else
+    return '<C-e>'
+  end
+end
+
 local km = require('n8j1s.km')
 km.i('jj', "<Esc>")
+km.i('<C-e>', expand, { expr = true })
+km.s('<C-e>', expand, { expr = true })
+km.i('<Tab>', jump_next, { expr = true })
+km.s('<Tab>', jump_next, { expr = true })
+km.i('<S-Tab>', jump_back, { expr = true })
+km.s('<S-Tab>', jump_back, { expr = true })
 km.n('<leader>tt', '<cmd>Telescope resume<cr>')
 km.n('<leader>tf', "<cmd>Telescope find_files<cr>")
 km.n('<leader>tj', "<cmd>Telescope find_files theme=dropdown find_command=rg,--type=java,--files<cr>")
@@ -22,6 +67,7 @@ km.n('<leader>cfS', "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>")
 km.n('<leader>cfr', '<cmd>Telescope lsp_references<cr>')
 km.n('<leader>cfi', '<cmd>Telescope lsp_implementations<cr>')
 km.n('<leader>f', '<cmd>FloatermNew --opener=edit lf<cr>')
+km.n('<leader>ss', save_source)
 km.n('<C-p>', "<cmd>bprevious<cr>")
 km.n('<C-n>', "<cmd>bnext<cr>")
 km.n('<C-d>', '<C-d>zz')
@@ -36,19 +82,20 @@ km.n('<Tab>', '>>_')
 km.n('<S-Tab>', '<<_')
 
 -- Markdown Notebook Keymaps
-if require("zk.util").notebook_root(vim.fn.getcwd()) ~= nil then
-  local function newNote()
-    local cancel_val = '--cancel--'
-    local t = vim.fn.input{prompt='Title: ', cancelreturn=cancel_val}
-    if t == cancel_val then
-      vim.print('Cancel')
-    else
-      require('zk').new { title = t }
-    end
+if vim.fn.filereadable('.notebook')==1 then
+  local function new_note()
+    local filename = nil
+    repeat
+      filename = random_string(4) .. '.md'
+    until vim.fn.filereadable(filename) == 0
+    vim.cmd.edit(filename)
+    vim.fn['vsnip#anonymous']('quicknote')
+    vim.fn['vsnip#expand']()
   end
 
-  km.n('<Leader>nj', '<Cmd>ZkNew { dir = "journal" }<CR>')
-  km.n('<Leader>ni', '<Cmd>edit index.md<CR>')
-  km.n('<Leader>ncc', newNote)
+  km.n('<Leader>nj', function() vim.cmd.edit('Journal/' .. os.date('%Y-%m-%d') .. '.md') end)
+  km.n('<Leader>ni', function() vim.cmd.edit('0000.md') end)
+  km.n('<Leader>ncc', new_note)
   km.n('<Leader>tf', '<Cmd>ZkNotes { sort = {"modified-"} }<CR>')
 end
+
