@@ -15,5 +15,20 @@
       "",
       "- $CURRENT_HOUR:$CURRENT_MINUTE Communications"
     ]
+  },
+  "quicknote": {
+    "prefix": ["quicknote"],
+    "body": [
+      "---",
+      "date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE",
+      "---",
+      "# $1",
+      "",
+      "## Metadata",
+      "- tags:",
+      "  - #$2",
+      "",
+      "$0"
+    ]
   }
 }
