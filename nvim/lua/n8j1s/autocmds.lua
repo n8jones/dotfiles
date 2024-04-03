@@ -1,6 +1,7 @@
 local function format_mins(mins)
   return string.format('%02d:%02d', mins/60, math.fmod(mins, 60))
 end
+
 local function extract_tags(name)
   local tags = {}
   local c = 1
@@ -12,6 +13,7 @@ local function extract_tags(name)
   end
   return tags
 end
+
 local function timelog_diagnostics(args)
   local regex = vim.regex("- \\d\\d:\\d\\d .*")
   local ns = vim.api.nvim_create_namespace('n8j1s.timelog')
@@ -72,5 +74,14 @@ local function timelog_diagnostics(args)
   vim.diagnostic.set(ns, args.buf, diags)
 end
 
+local function on_note_save(args)
+  if vim.fn.filereadable('.notebook')~=1 then
+    return
+  end
+  vim.cmd.Git { 'add "' .. args.file .. '"', mods = { silent = true } }
+  vim.cmd.Git { 'commit -m "On save ' .. args.file .. '"', mods = { silent = true } }
+end
+
 local grp = vim.api.nvim_create_augroup('n8j1s', { clear = true })
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, { group = grp, callback = timelog_diagnostics, pattern = {'*.md'} })
+vim.api.nvim_create_autocmd('BufWritePost', { group = grp, callback = on_note_save, pattern = {'*.md'} })
