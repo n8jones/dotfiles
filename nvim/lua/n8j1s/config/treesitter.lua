@@ -5,9 +5,9 @@ function M.config()
     highlight = {
       enable = true,
       disable = {
-        "markdown", -- Use the highlighting from zk plugin
       },
     },
+    indent = { enable = true },
   }
 end
 return M
