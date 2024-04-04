@@ -80,6 +80,7 @@ km.t("<C-Space><C-Space>", "<C-\\><C-n>")
 km.t("<leader><leader>", "<C-\\><C-n>")
 km.n('<Tab>', '>>_')
 km.n('<S-Tab>', '<<_')
+km.n('[c', function() require('treesitter-context').go_to_context(vim.v.count1) end, { silent = true })
 
 -- Markdown Notebook Keymaps
 if vim.fn.filereadable('.notebook')==1 then
