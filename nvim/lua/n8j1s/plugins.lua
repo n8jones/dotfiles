@@ -36,6 +36,7 @@ require("lazy").setup({
   {'nvim-treesitter/nvim-treesitter', config = delegate('treesitter'), version='*', dependencies = {
     'nvim-treesitter/nvim-treesitter-context',
   } },
+  {'tadmccorkle/markdown.nvim', ft = 'markdown', opts = { } },
   {'tpope/vim-fugitive'},
   {'tpope/vim-surround'},
   {'voldikss/vim-floaterm', config = delegate('floaterm')},
