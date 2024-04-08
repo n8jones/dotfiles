@@ -85,3 +85,5 @@ end
 local grp = vim.api.nvim_create_augroup('n8j1s', { clear = true })
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter' }, { group = grp, callback = timelog_diagnostics, pattern = {'*.md'} })
 vim.api.nvim_create_autocmd('BufWritePost', { group = grp, callback = on_note_save, pattern = {'*.md'} })
+vim.api.nvim_create_autocmd('TextYankPost', { group = grp, callback = function() vim.highlight.on_yank() end })
+
