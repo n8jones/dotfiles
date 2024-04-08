@@ -38,7 +38,7 @@ require("lazy").setup({
   } },
   {'tadmccorkle/markdown.nvim', ft = 'markdown', opts = { } },
   {'tpope/vim-fugitive'},
-  {'tpope/vim-surround'},
+  {'tpope/vim-surround', version = '*'},
   {'voldikss/vim-floaterm', config = delegate('floaterm')},
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false, init = delegate('lsp_zero'), },
   {'williamboman/mason.nvim', lazy = false, config = true, version = '*'},
