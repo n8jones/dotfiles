@@ -11,7 +11,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {'folke/which-key.nvim', event = "VeryLazy", opts = { } },
+  {'folke/which-key.nvim', version = '*', event = "VeryLazy", opts = { } },
   {'hrsh7th/vim-vsnip', event = "InsertEnter", config = delegate('vsnip'), dependencies = {
     'hrsh7th/vim-vsnip-integ',
     'rafamadriz/friendly-snippets',
