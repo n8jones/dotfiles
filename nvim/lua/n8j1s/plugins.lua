@@ -11,7 +11,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { 'echasnovski/mini.nvim', version = '*', config = delegate('mini') },
+  {'echasnovski/mini.nvim', version = '*', config = delegate('mini') },
   {'folke/which-key.nvim', version = '*', event = "VeryLazy", opts = { } },
   {'folke/tokyonight.nvim', version = '*', priority = 1000, init = function() vim.cmd.colorscheme('tokyonight-night') end },
   {'hrsh7th/vim-vsnip', event = "InsertEnter", config = delegate('vsnip'), dependencies = {
@@ -30,8 +30,9 @@ require("lazy").setup({
     {'mfussenegger/nvim-jdtls'},
     {'williamboman/mason-lspconfig.nvim', version = '*'},
   } },
-  {'nvim-telescope/telescope.nvim', version = '*', dependencies = {
+  {'nvim-telescope/telescope.nvim', version = '*', config = delegate('telescope'), dependencies = {
     'nvim-telescope/telescope-fzf-native.nvim',
+    'nvim-telescope/telescope-ui-select.nvim',
     'nvim-lua/plenary.nvim',
   } },
   {'nvim-treesitter/nvim-treesitter', config = delegate('treesitter'), version='*', dependencies = {
