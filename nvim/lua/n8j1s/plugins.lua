@@ -12,6 +12,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {'folke/which-key.nvim', version = '*', event = "VeryLazy", opts = { } },
+  {'folke/tokyonight.nvim', version = '*', lazy = false, priority = 1000, opts = { style = 'night' } },
   {'hrsh7th/vim-vsnip', event = "InsertEnter", config = delegate('vsnip'), dependencies = {
     'hrsh7th/vim-vsnip-integ',
     'rafamadriz/friendly-snippets',
@@ -24,7 +25,6 @@ require("lazy").setup({
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-vsnip',
   } },
-  {'morhetz/gruvbox', config = delegate('gruvbox'), priority = 1000, lazy = false},
   {'neovim/nvim-lspconfig', version = '*', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, config = delegate('lspconfig'), dependencies = {
     {'mfussenegger/nvim-jdtls'},
     {'williamboman/mason-lspconfig.nvim', version = '*'},

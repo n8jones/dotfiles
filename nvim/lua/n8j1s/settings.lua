@@ -9,3 +9,5 @@ vim.opt.relativenumber = true
 vim.opt.shiftwidth = 2
 vim.opt.statusline = '%f%M%=[%Y] %{FugitiveStatusline()}'
 
+vim.cmd.colorscheme('tokyonight-night')
+
