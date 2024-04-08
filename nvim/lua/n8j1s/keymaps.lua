@@ -24,7 +24,7 @@ local function random_string(num)
 end
 
 local function jump_next()
-  if vim.fn['vsnip#jumpable'](1) then
+  if vim.fn['vsnip#jumpable'](1)==1 then
     return '<Plug>(vsnip-jump-next)'
   else
     return '<Tab>'
@@ -32,7 +32,7 @@ local function jump_next()
 end
 
 local function jump_back()
-  if vim.fn['vsnip#jumpable'](-1) then
+  if vim.fn['vsnip#jumpable'](-1)==1 then
     return '<Plug>(vsnip-jump-prev)'
   else
     return '<S-Tab>'
@@ -40,7 +40,7 @@ local function jump_back()
 end
 
 local function expand()
-  if vim.fn['vsnip#expandable']() then
+  if vim.fn['vsnip#expandable']()==1 then
     return '<Plug>(vsnip-expand)'
   else
     return '<C-e>'
