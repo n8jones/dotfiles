@@ -25,7 +25,7 @@ require("lazy").setup({
     'hrsh7th/cmp-vsnip',
   } },
   {'morhetz/gruvbox', config = delegate('gruvbox'), priority = 1000, lazy = false},
-  {'neovim/nvim-lspconfig', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, config = delegate('lspconfig'), dependencies = {
+  {'neovim/nvim-lspconfig', version = '*', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, config = delegate('lspconfig'), dependencies = {
     {'mfussenegger/nvim-jdtls'},
     {'williamboman/mason-lspconfig.nvim', version = '*'},
   } },
