@@ -29,7 +29,7 @@ require("lazy").setup({
     {'mfussenegger/nvim-jdtls'},
     {'williamboman/mason-lspconfig.nvim', version = '*'},
   } },
-  {'nvim-telescope/telescope.nvim', dependencies = {
+  {'nvim-telescope/telescope.nvim', version = '*', dependencies = {
     'nvim-telescope/telescope-fzf-native.nvim',
     'nvim-lua/plenary.nvim',
   } },
