@@ -26,6 +26,7 @@ require("lazy").setup({
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-vsnip',
   } },
+  {'lewis6991/gitsigns.nvim', version = '*', opts = { }, event = {'BufReadPre', 'BufNewFile'}, },
   {'neovim/nvim-lspconfig', version = '*', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, config = delegate('lspconfig'), dependencies = {
     {'mfussenegger/nvim-jdtls'},
     {'williamboman/mason-lspconfig.nvim', version = '*'},
