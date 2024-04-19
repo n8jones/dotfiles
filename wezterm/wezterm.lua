@@ -47,11 +47,13 @@ config.keys = {
   { key = 'e', mods = 'LEADER', action = act.SplitPane { command = { args = { 'nvim' } }, direction = 'Up' } },
   { key = 'v', mods = 'LEADER', action = act.ActivateCopyMode },
   { key = 'q', mods = 'LEADER', action = act.QuickSelect },
-  { key = ' ', mods = 'LEADER', action = act.ShowLauncherArgs { flags = "FUZZY|TABS|COMMANDS|LAUNCH_MENU_ITEMS" } },
+  { key = ' ', mods = 'LEADER', action = act.ShowLauncherArgs { flags = "FUZZY|TABS|COMMANDS|LAUNCH_MENU_ITEMS|WORKSPACES" } },
   { key = 'r', mods = 'LEADER', action = act.PromptInputLine { description = wezterm.format { { Text = "Enter command: " } }, action = wezterm.action_callback(run_callback) } },
 
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
+
+  { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
 }
 
 wezterm.on('gui-startup', function(cmd)
@@ -80,20 +82,40 @@ local function basename(path)
   return path:sub(i+1)
 end
 
+local function indexOf(arr, value)
+  for i, v in ipairs(arr) do
+    if v == value then
+      return i
+    end
+  end
+  return 0
+end
+
 wezterm.on('update-status', function(win, pane)
   local cwd = basename(pane:get_current_working_dir().path)
   local proc = basename(pane:get_foreground_process_name())
   local title = string.format('%s (%s)', cwd, proc)
   pane:tab():set_title(title)
-
-  local date = wezterm.strftime '%Y-%m-%d %H:%M:%S  '
-  local bat = ''
+  local SEP = { Text = '   ' }
+  local workspaces = wezterm.mux.get_workspace_names()
+  local active = wezterm.mux.get_active_workspace()
+  local msg = {
+    SEP,
+    { Text = active },
+    { Text = '(' },
+    { Text = tostring(indexOf(workspaces, active)) },
+    { Text = '/' },
+    { Text = tostring(#workspaces) },
+    { Text = ')' },
+    SEP,
+  }
   for _, b in ipairs(wezterm.battery_info()) do
-    bat = '🔋 ' .. string.format('%.0f%%', b.state_of_charge * 100)
+    table.insert(msg, { Text = '🔋' .. string.format('%.0f%%', b.state_of_charge * 100) })
+    table.insert(msg, SEP)
   end
-  win:set_right_status(wezterm.format {
-    { Text = bat .. '  ' .. date },
-  })
+  table.insert(msg, { Text = wezterm.strftime '%Y-%m-%d %H:%M:%S'})
+  table.insert(msg, SEP)
+  win:set_right_status(wezterm.format(msg))
 end)
 
 return config
