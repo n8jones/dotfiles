@@ -4,9 +4,14 @@ function M.config()
     ensure_installed = {
       'markdown',
       'markdown_inline',
+      'java',
+      'groovy',
     },
     highlight = {
       enable = true,
+      additional_vim_regex_highlighting = {
+        'markdown',
+      },
       disable = {
       },
     },

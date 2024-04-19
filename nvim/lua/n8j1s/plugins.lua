@@ -38,11 +38,12 @@ require("lazy").setup({
   } },
   {'nvim-treesitter/nvim-treesitter', config = delegate('treesitter'), version='*', dependencies = {
     'nvim-treesitter/nvim-treesitter-context',
+    'tadmccorkle/markdown.nvim',
   } },
-  {'tadmccorkle/markdown.nvim', ft = 'markdown', opts = { } },
   {'tpope/vim-fugitive'},
   {'voldikss/vim-floaterm', config = delegate('floaterm')},
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false, init = delegate('lsp_zero'), },
   {'williamboman/mason.nvim', lazy = false, config = true, version = '*'},
+  {'zk-org/zk-nvim', config = delegate('zk') },
 })
 

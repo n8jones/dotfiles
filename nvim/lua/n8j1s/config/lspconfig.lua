@@ -1,17 +1,19 @@
 local M = {}
 
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+lsp_capabilities = vim.tbl_deep_extend('keep', lsp_capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 function M.config()
   local lsp_zero = require('lsp-zero')
   lsp_zero.extend_lspconfig()
 
   lsp_zero.on_attach(function(_, bufnr)
-    lsp_zero.default_keymaps({buffer = bufnr})
+    local opts = {buffer = bufnr}
+    lsp_zero.default_keymaps(opts)
     local km = require('n8j1s.km')
-    --km.n('<leader>ca', vim.lsp.buf.code_action)
-    --km.n('gd', vim.lsp.buf.definition)
-    --km.n('K', vim.lsp.buf.hover);
+    km.n('<leader>ca', vim.lsp.buf.code_action, opts)
+    km.n('gd', vim.lsp.buf.definition, opts)
+    km.n('K', vim.lsp.buf.hover, opts);
   end)
 
   require('mason-lspconfig').setup({
@@ -21,7 +23,7 @@ function M.config()
     },
     handlers = {
       lsp_zero.default_setup,
-      jdtls = M.jdtls_setup,
+      --jdtls = M.jdtls_setup,
       lua_ls = M.lua_ls_setup,
     }
   })

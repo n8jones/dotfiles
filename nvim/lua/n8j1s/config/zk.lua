@@ -4,16 +4,12 @@ function M.config()
   require("zk").setup({
     picker = "telescope",
     lsp = {
-      config = {
-        cmd = { "zk", "lsp" },
-        name = "zk",
-      },
       auto_attach = {
-        enabled = true,
-        filetypes = { "markdown" },
+        enabled = false,
       },
     },
   })
+  require('lspconfig').zk.setup { }
 end
 
 return M

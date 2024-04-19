@@ -5,4 +5,8 @@ syn region markdownLinkText matchgroup=markdownLinkTextDelimiter start="!\=\[\%(
 " markdownLink is copied from runtime files with 'conceal' appended
 syn region markdownLink matchgroup=markdownLinkDelimiter start="(" end=")" contains=markdownUrl keepend contained conceal
 
+syn region markdownWikiLink matchgroup=markdownLinkDelimiter start="\[\[\k*|" end="\]\]" contains=markdownUrl keepend oneline concealends
+
+syn match Tag "#\(\k\|\/\)\+"
+
 setlocal conceallevel=2
