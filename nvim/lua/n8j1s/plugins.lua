@@ -14,7 +14,8 @@ require("lazy").setup({
   {'echasnovski/mini.nvim', version = '*', config = delegate('mini') },
   {'folke/which-key.nvim', version = '*', event = "VeryLazy", opts = { } },
   {'folke/tokyonight.nvim', version = '*', priority = 1000, init = function() vim.cmd.colorscheme('tokyonight-night') end },
-  {'folke/zen-mode.nvim', opts = { window = { width = 90, }, plugins = { wezterm = { enabled = true, font = '+4' } } } },
+  {'folke/zen-mode.nvim', version = '*', opts = { window = { width = 90, }, plugins = { twilight = { enabled = true }, wezterm = { enabled = true, font = '+4' } } } },
+  {'folke/twilight.nvim', version = '*', opts = { } },
   {'hrsh7th/vim-vsnip', event = "InsertEnter", config = delegate('vsnip'), dependencies = {
     'hrsh7th/vim-vsnip-integ',
     'rafamadriz/friendly-snippets',
