@@ -7,10 +7,11 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '~', nbsp = '␣', eol = '$'}
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.shiftwidth = 2
 vim.opt.statusline = '%f%M%=[%Y] %{FugitiveStatusline()}'
 vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.wrap = true
+vim.opt.breakindentopt = 'list:-1'
 

@@ -22,3 +22,5 @@ end
 
 local km = require('n8j1s.km')
 km.n('<Leader>o', newLine)
+vim.bo.formatlistpat = "^\\s*\\(\\-\\|\\*\\|\\d\\+\\.\\) "
+
