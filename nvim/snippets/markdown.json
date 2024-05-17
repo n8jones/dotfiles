@@ -8,8 +8,10 @@
       "# $CURRENT_DAY_NAME $CURRENT_MONTH_NAME $CURRENT_DATE, $CURRENT_YEAR",
       "",
       "## Metadata",
+      "",
       "- tags:",
-      "  - #type/Journal",
+      "\t- #Journal",
+      "\t- #${1:OnSite}",
       "",
       "## Time Log",
       "",
@@ -25,8 +27,9 @@
       "# $1",
       "",
       "## Metadata",
+      "",
       "- tags:",
-      "  - #$2",
+      "\t- #$2",
       "",
       "$0"
     ]
