@@ -16,6 +16,7 @@ require("lazy").setup({
   {'folke/tokyonight.nvim', version = '*', priority = 1000, init = function() vim.cmd.colorscheme('tokyonight-night') end },
   {'folke/zen-mode.nvim', version = '*', opts = { window = { width = 90, }, plugins = { twilight = { enabled = true }, wezterm = { enabled = true, font = '+4' } } } },
   {'folke/twilight.nvim', version = '*', opts = { } },
+  {'hiphish/rainbow-delimiters.nvim', version = '*' },
   {'hrsh7th/vim-vsnip', event = "InsertEnter", config = delegate('vsnip'), dependencies = {
     'hrsh7th/vim-vsnip-integ',
     'rafamadriz/friendly-snippets',
@@ -43,6 +44,7 @@ require("lazy").setup({
     'tadmccorkle/markdown.nvim',
   } },
   {'tpope/vim-fugitive'},
+  {'tpope/vim-sleuth'},
   {'voldikss/vim-floaterm', config = delegate('floaterm')},
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false, init = delegate('lsp_zero'), },
   {'williamboman/mason.nvim', lazy = false, config = true, version = '*'},
