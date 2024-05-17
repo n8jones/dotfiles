@@ -53,7 +53,7 @@ config.keys = {
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
 
-  { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+  { key = 'v', mods = 'CTRL|SHIFT', action = act.PasteFrom 'Clipboard' },
 }
 
 wezterm.on('gui-startup', function(cmd)
