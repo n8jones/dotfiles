@@ -25,6 +25,10 @@ function M.config()
 
   require('mini.surround').setup()
 
+  require('mini.trailspace').setup()
+
+  require('mini.visits').setup()
+
 end
 
 return M
