@@ -21,6 +21,8 @@ local function newLine()
 end
 
 local km = require('n8j1s.km')
-km.n('<Leader>o', newLine)
+local opts = {buffer = true}
+km.n('<Leader>o', newLine, opts)
+km.n('<Leader>nr', function() require('n8j1s.runsnip').run_code_block() end, opts)
 vim.bo.formatlistpat = "^\\s*\\(\\-\\|\\*\\|\\d\\+\\.\\) "
 
