@@ -9,13 +9,11 @@
       "",
       "## Metadata",
       "",
-      "- tags:",
-      "\t- #Journal",
-      "\t- #${1:OnSite}",
+      "- tags: #Journal #${1:OnSite}",
       "",
       "## Time Log",
       "",
-      "- $CURRENT_HOUR:$CURRENT_MINUTE Communications"
+      "- $CURRENT_HOUR:$CURRENT_MINUTE ${2:Communications}"
     ]
   },
   "quicknote": {
