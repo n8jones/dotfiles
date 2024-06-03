@@ -14,5 +14,5 @@ vim.opt.splitbelow = true
 vim.opt.wrap = true
 vim.opt.breakindentopt = 'list:-1'
 
-vim.g.markdown_fenced_languages = {'ps1'}
+vim.g.markdown_fenced_languages = {'ps1', 'sql', 'groovy', 'java', 'c', 'cpp'}
 
