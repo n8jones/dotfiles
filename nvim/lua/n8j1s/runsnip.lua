@@ -85,6 +85,8 @@ end
 
 local M = {}
 
+M.handlers = handlers
+
 function M.run_code_block()
   local node = vim.treesitter.get_node()
   if node == nil then
