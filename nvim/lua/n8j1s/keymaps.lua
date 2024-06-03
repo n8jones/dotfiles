@@ -98,5 +98,6 @@ if vim.fn.filereadable('.notebook')==1 then
   km.n('<Leader>ni', function() vim.cmd.edit('0000.md') end)
   km.n('<Leader>ncc', new_note)
   km.n('<Leader>tf', '<Cmd>ZkNotes { sort = {"modified-"} }<CR>')
+  km.n('<Leader>nt', function() require('zk').edit({tags = {'Task', '-Done'}, sort = {'modified-'} }, {}) end)
 end
 
