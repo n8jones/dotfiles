@@ -1,3 +1,5 @@
+local log = require('n8j1s.log')
+
 local function search_up(node, type)
   if node ~= nil then
     if node:type() == type then
@@ -21,20 +23,6 @@ local function search_down(root, type)
     end
   end
   return nil
-end
-
-local log = {}
-
-function log.error(msg)
-  vim.notify(msg, vim.log.levels.ERROR)
-end
-
-function log.warn(msg)
-  vim.notify(msg, vim.log.levels.WARN)
-end
-
-function log.info(msg)
-  vim.notify(msg, vim.log.levels.INFO)
 end
 
 local function str_blank(s)
