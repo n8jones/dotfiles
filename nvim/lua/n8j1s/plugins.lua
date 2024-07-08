@@ -11,6 +11,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  {'aklt/plantuml-syntax'},
   {'echasnovski/mini.nvim', version = '*', config = delegate('mini') },
   {'folke/which-key.nvim', version = '*', event = "VeryLazy", opts = { } },
   {'folke/tokyonight.nvim', version = '*', priority = 1000, init = function() vim.cmd.colorscheme('tokyonight-night') end },

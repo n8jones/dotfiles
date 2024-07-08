@@ -18,6 +18,7 @@
   "nvim-lspconfig": { "branch": "master", "commit": "cf3dd4a290084a868fac0e2e876039321d57111c" },
   "nvim-treesitter": { "branch": "master", "commit": "f197a15b0d1e8d555263af20add51450e5aaa1f0" },
   "nvim-treesitter-context": { "branch": "master", "commit": "4fe0a54e86859744968e1a5c7867b49c86855774" },
+  "plantuml-syntax": { "branch": "master", "commit": "1592944444513c208ab5a087397ba987932af750" },
   "plenary.nvim": { "branch": "master", "commit": "08e301982b9a057110ede7a735dd1b5285eb341f" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "12b1a1e095d968887a17ef791c2edb78d7595d46" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "9ef21b2e6bb6ebeaf349a0781745549bbb870d27" },
