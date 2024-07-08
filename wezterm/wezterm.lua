@@ -7,6 +7,7 @@ config.font = wezterm.font 'JetBrainsMono NF'
 config.default_prog = { 'powershell.exe' }
 config.window_decorations = 'RESIZE'
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 }
+config.scrollback_lines = 100000
 local function tabn(tab)
   return { key = tostring(tab), mods = 'LEADER', action = act.ActivateTab(tab - 1) }
 end
