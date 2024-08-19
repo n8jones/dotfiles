@@ -16,3 +16,8 @@ vim.opt.breakindentopt = 'list:-1'
 
 vim.g.markdown_fenced_languages = {'ps1', 'sql', 'groovy', 'java', 'c', 'cpp'}
 
+vim.diagnostic.config {
+  virtual_text = true,
+  virtual_lines = false,
+}
+

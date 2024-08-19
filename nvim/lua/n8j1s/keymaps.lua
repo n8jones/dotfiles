@@ -47,6 +47,14 @@ local function expand()
   end
 end
 
+local function toggle_diagnostics()
+  local c = vim.diagnostic.config()
+  vim.diagnostic.config {
+    virtual_text = not c.virtual_text,
+    virtual_lines = not c.virtual_lines,
+  }
+end
+
 local km = require('n8j1s.km')
 km.i('jj', "<Esc>")
 km.i('<C-e>', expand, { expr = true })
@@ -66,6 +74,10 @@ km.n('<leader>cfs', "<cmd>Telescope lsp_document_symbols<cr>")
 km.n('<leader>cfS', "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>")
 km.n('<leader>cfr', '<cmd>Telescope lsp_references<cr>')
 km.n('<leader>cfi', '<cmd>Telescope lsp_implementations<cr>')
+km.n('<leader>dd', toggle_diagnostics, {desc = 'Toggle diagnostic view'})
+km.n('<leader>dn', function() vim.diagnostic.goto_next() end, {desc = 'Goto Next Diagnostic'})
+km.n('<leader>do', function() vim.diagnostic.open_float() end, {desc = 'Open diagnostic float'})
+km.n('<leader>dp', function() vim.diagnostic.goto_prev() end, {desc = 'Goto Previous Diagnostic'})
 km.n('<leader>f', function() require('mini.files').open(vim.api.nvim_buf_get_name(0)) end, {desc = 'Open file browser'})
 km.n('<leader>r', function() require('mini.visits').select_path() end, {desc = 'Select recent files'})
 km.n('<leader>ss', save_source, {desc = 'Save and Source file'})
