@@ -50,5 +50,6 @@ require("lazy").setup({
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false, init = delegate('lsp_zero'), },
   {'williamboman/mason.nvim', lazy = false, config = true, version = '*'},
   {'zk-org/zk-nvim', config = delegate('zk') },
+  {'https://git.sr.ht/~whynothugo/lsp_lines.nvim', version = '*', opts = {} },
 })
 
