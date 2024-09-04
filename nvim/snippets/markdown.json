@@ -13,7 +13,11 @@
       "",
       "## Time Log",
       "",
-      "- $CURRENT_HOUR:$CURRENT_MINUTE ${2:Communications}"
+      "- $CURRENT_HOUR:$CURRENT_MINUTE ${2:Communications}",
+      "",
+      "## In Progress Tasks",
+      "",
+      "${VIM:system('zk mdlinks --tag=\"Task,InProgress\"')}"
     ]
   },
   "quicknote": {
