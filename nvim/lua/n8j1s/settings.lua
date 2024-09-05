@@ -1,10 +1,19 @@
 vim.opt.cursorline = true
 vim.opt.expandtab = true
+vim.opt.foldcolumn = "auto:9"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
 vim.opt.hidden = true
 vim.opt.ignorecase = true
 vim.opt.laststatus = 3
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '~', nbsp = '␣', eol = '$'}
+vim.opt.listchars = {
+  tab = '» ',
+  trail = '~',
+  nbsp = '␣',
+  eol = '$',
+}
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.smartcase = true

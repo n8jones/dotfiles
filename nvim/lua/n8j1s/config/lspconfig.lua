@@ -2,6 +2,10 @@ local M = {}
 
 local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 lsp_capabilities = vim.tbl_deep_extend('keep', lsp_capabilities, require('cmp_nvim_lsp').default_capabilities())
+lsp_capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
 
 function M.config()
   local lsp_zero = require('lsp-zero')

@@ -29,6 +29,7 @@ require("lazy").setup({
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-vsnip',
   } },
+  {'kevinhwang91/nvim-ufo', events = "VeryLazy", version = '*', opts = {}, dependencies={{'kevinhwang91/promise-async', version = '*'}}},
   {'lbrayner/vim-rzip', init = function() vim.g.rzipPlugin_extra_ext='*.slx' end},
   {'lewis6991/gitsigns.nvim', version = '*', opts = { }, event = {'BufReadPre', 'BufNewFile'}, },
   {'neovim/nvim-lspconfig', version = '*', cmd = {'LspInfo', 'LspInstall', 'LspStart'}, event = {'BufReadPre', 'BufNewFile'}, config = delegate('lspconfig'), dependencies = {
