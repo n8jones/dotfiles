@@ -25,6 +25,8 @@ function M.config()
 
   require('mini.files').setup { windows = { preview = true } }
 
+  require('mini.icons').setup()
+
   require('mini.move').setup()
 
   require('mini.notify').setup()
