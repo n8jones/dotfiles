@@ -1,3 +1,6 @@
+if vim.loader then
+    vim.loader.enable()
+end
 vim.g.mapleader = " "
 
 require("n8j1s.plugins")
