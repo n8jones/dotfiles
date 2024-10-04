@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 config.color_scheme = 'tokyonight_night'
 config.font = wezterm.font 'JetBrainsMono NF'
 config.default_prog = { 'powershell.exe' }
-config.window_decorations = 'RESIZE'
+config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 }
 config.scrollback_lines = 100000
 local function tabn(tab)
