@@ -1,13 +1,17 @@
 local wezterm = require 'wezterm'
-local mux = wezterm.mux
 local act = wezterm.action
 local config = wezterm.config_builder()
 config.color_scheme = 'tokyonight_night'
 config.font = wezterm.font 'JetBrainsMono NF'
-config.default_prog = { 'powershell.exe' }
+config.default_prog = { 'pwsh.exe', '-NoLogo' }
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 }
 config.scrollback_lines = 100000
+config.launch_menu = {
+  { label = 'Pwsh', args = {'pwsh.exe', '-NoLogo'} },
+  { label = 'Powershell', args = {'powershell.exe', '-NoLogo'} },
+  { label = 'CMD', args = {'cmd.exe'} },
+}
 local function tabn(tab)
   return { key = tostring(tab), mods = 'LEADER', action = act.ActivateTab(tab - 1) }
 end
@@ -44,12 +48,14 @@ config.keys = {
   { key = 'l', mods = 'LEADER', action = act.ActivatePaneDirection('Right') },
   { key = 'k', mods = 'LEADER', action = act.ActivatePaneDirection('Up') },
   { key = 'j', mods = 'LEADER', action = act.ActivatePaneDirection('Down') },
-  { key = 'd', mods = 'LEADER', action = act.ShowDebugOverlay },
+  { key = 'd', mods = 'LEADER|SHIFT', action = act.ShowDebugOverlay },
   { key = 'e', mods = 'LEADER', action = act.SplitPane { command = { args = { 'nvim' } }, direction = 'Up' } },
   { key = 'v', mods = 'LEADER', action = act.ActivateCopyMode },
   { key = 'q', mods = 'LEADER', action = act.QuickSelect },
   { key = ' ', mods = 'LEADER', action = act.ShowLauncherArgs { flags = "FUZZY|TABS|COMMANDS|LAUNCH_MENU_ITEMS|WORKSPACES" } },
   { key = 'r', mods = 'LEADER', action = act.PromptInputLine { description = wezterm.format { { Text = "Enter command: " } }, action = wezterm.action_callback(run_callback) } },
+  { key = 'n', mods = 'LEADER', action = act.SwitchToWorkspace { name = 'Notes', spawn = {args = {'nvim.exe'}, cwd = [[C:\Users\nljones2\OneDrive - NASA\Documents\Notes\]]} } },
+  { key = 'd', mods = 'LEADER', action = act.SwitchToWorkspace { name = 'default'} },
 
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
@@ -58,7 +64,7 @@ config.keys = {
 }
 
 wezterm.on('gui-startup', function(cmd)
-  local tab, pane, window = mux.spawn_window(cmd or {})
+  local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 end)
 
@@ -92,8 +98,11 @@ local function indexOf(arr, value)
   return 0
 end
 
-wezterm.on('update-status', function(win, pane)
-  local cwd = basename(pane:get_current_working_dir().path)
+local function on_update_status(win, pane)
+  local wdir = pane:get_current_working_dir()
+  local path = '<nopath>'
+  if wdir then path = wdir.path end
+  local cwd = basename(path)
   local proc = basename(pane:get_foreground_process_name())
   local title = string.format('%s (%s)', cwd, proc)
   pane:tab():set_title(title)
@@ -117,7 +126,13 @@ wezterm.on('update-status', function(win, pane)
   table.insert(msg, { Text = wezterm.strftime '%Y-%m-%d %H:%M:%S'})
   table.insert(msg, SEP)
   win:set_right_status(wezterm.format(msg))
-end)
+
+  -- local tabs = win:mux_window():tabs()
+  -- local overrides = win:get_config_overrides() or {}
+  -- overrides.enable_tab_bar = #tabs > 1
+  -- win:set_config_overrides(overrides)
+end
+wezterm.on('update-status', on_update_status)
 
 wezterm.on('user-var-changed', function(window, pane, name, value)
     local overrides = window:get_config_overrides() or {}
