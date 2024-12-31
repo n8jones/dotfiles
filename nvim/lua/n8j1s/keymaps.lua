@@ -76,6 +76,7 @@ km.n('<leader>ts', function() require'telescope.builtin'.treesitter { symbols={ 
 km.n('<leader>tg', "<cmd>Telescope live_grep<cr>")
 km.n('<leader>tb', "<cmd>Telescope buffers<cr>")
 km.n('<leader>th', "<cmd>Telescope help_tags<cr>")
+key_group('n', '<leader>c', '+Code')
 km.n('<leader>cfs', "<cmd>Telescope lsp_document_symbols<cr>")
 km.n('<leader>cfS', "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>")
 km.n('<leader>cfr', '<cmd>Telescope lsp_references<cr>')
