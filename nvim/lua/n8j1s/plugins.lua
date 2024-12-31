@@ -37,7 +37,7 @@ require("lazy").setup({
     {'williamboman/mason-lspconfig.nvim', version = '*'},
   } },
   {'nvim-telescope/telescope.nvim', version = '*', config = delegate('telescope'), dependencies = {
-    'nvim-telescope/telescope-fzf-native.nvim',
+    {'nvim-telescope/telescope-fzf-native.nvim', build='make'},
     'nvim-telescope/telescope-ui-select.nvim',
     'nvim-lua/plenary.nvim',
   } },
