@@ -45,6 +45,7 @@ require("lazy").setup({
     'nvim-treesitter/nvim-treesitter-context',
     'tadmccorkle/markdown.nvim',
   } },
+  {'stevearc/oil.nvim', version = '*', cmd = {'Oil'}, opts = {}},
   {'tpope/vim-fugitive'},
   {'tpope/vim-sleuth'},
   {'voldikss/vim-floaterm', config = delegate('floaterm')},
