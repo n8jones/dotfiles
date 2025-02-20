@@ -101,6 +101,8 @@ km.t("<leader><leader>", "<C-\\><C-n>", {desc = 'Switch to normal mode'})
 km.n('<Tab>', '>>_')
 km.n('<S-Tab>', '<<_')
 km.n('[c', function() require('treesitter-context').go_to_context(vim.v.count1) end, { silent = true })
+km.n('-', function() require('oil').open_float() end, {desc = 'Open Oil'})
+km.n('<Esc><Esc>', '<cmd>bdelete<cr>', {desc = 'Close buffer'})
 
 -- Markdown Notebook Keymaps
 if vim.fn.filereadable('.notebook')==1 then
