@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 local config = wezterm.config_builder()
-config.color_scheme = 'tokyonight_night'
+config.color_scheme = 'onedarkpro_onedark_dark'
 config.font = wezterm.font 'JetBrainsMono NF'
 config.default_prog = { 'pwsh.exe', '-NoLogo' }
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'

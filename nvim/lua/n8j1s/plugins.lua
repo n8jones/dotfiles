@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {'aklt/plantuml-syntax'},
   {'echasnovski/mini.nvim', version = '*', config = delegate('mini'), },
-  {'folke/tokyonight.nvim', version = '*', priority = 1000, init = function() vim.cmd.colorscheme('tokyonight-night') end },
   {'folke/zen-mode.nvim', version = '*', opts = { window = { width = 90, }, plugins = { twilight = { enabled = true }, wezterm = { enabled = true, font = '+4' } } } },
   {'folke/twilight.nvim', version = '*', opts = { } },
   {'hiphish/rainbow-delimiters.nvim', version = '*' },
@@ -45,6 +44,7 @@ require("lazy").setup({
     'nvim-treesitter/nvim-treesitter-context',
     'tadmccorkle/markdown.nvim',
   } },
+  {'olimorris/onedarkpro.nvim', priority = 1000, version='*', init = function() vim.cmd.colorscheme('onedark_dark') end },
   {'stevearc/oil.nvim', version = '*', cmd = {'Oil'}, opts = {keymaps={['<esc><esc>']='actions.close'}}},
   {'tpope/vim-fugitive'},
   {'tpope/vim-sleuth'},
