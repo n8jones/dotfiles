@@ -1,8 +1,11 @@
 local M = {}
 
-function M.config()
+local P = {}
 
-  require('mini.basics').setup {
+P.opts = {
+  -- {name, options, function}
+
+  {'basics', {
     options = {
       basic = true,
       extra_ui = true,
@@ -13,89 +16,91 @@ function M.config()
       windows = true,
       move_with_alt = true,
     }
-  }
+  }},
 
-  require('mini.bracketed').setup()
+  {'bracketed'},
 
-  require('mini.clue').setup(M._mini_clue_config())
+  {'clue', nil, function(m) return P.clue_options(m) end},
 
-  require('mini.comment').setup()
+  {'comment'},
 
-  require('mini.cursorword').setup()
+  {'cursorword'},
 
-  require('mini.files').setup { windows = { preview = true } }
+  {'files', { windows = { preview = true } }},
 
-  require('mini.icons').setup()
+  {'icons'},
 
-  require('mini.move').setup()
+  {'move'},
 
-  require('mini.notify').setup()
+  {'notify'},
 
-  local starter = require('mini.starter')
-  starter.setup {
-    items = {
-      starter.sections.recent_files(10, true),
-      starter.sections.telescope(),
-      starter.sections.builtin_actions(),
+  {'starter', nil, function (starter)
+    return {
+      items = {
+        starter.sections.recent_files(10, true),
+        starter.sections.telescope(),
+        starter.sections.builtin_actions(),
+      }
     }
-  }
+  end},
 
-  require('mini.statusline').setup()
+  {'statusline'},
 
-  require('mini.surround').setup()
+  {'surround'},
 
-  require('mini.tabline').setup()
+  {'tabline'},
 
-  require('mini.trailspace').setup()
+  {'trailspace'},
+
+  {'visits'},
+}
+
+function M.config()
+  for _, v in ipairs(P.opts) do
+    local m = require('mini.'.. v[1])
+    local o
+    if #v == 3 then
+      o = v[3](m)
+    elseif #v == 2 then
+      o = v[2]
+    else
+      o = {}
+    end
+    m.setup(o)
+    vim.notify('Configured mini.' .. v[1], vim.log.levels.TRACE)
+  end
+
   vim.g.minitrailspace_disable = true
-
-  require('mini.visits').setup()
-
 end
 
-function M._mini_clue_config()
-  local miniclue = require('mini.clue')
+function P.clue_options(clue)
   return {
     triggers = {
-      -- Leader triggers
       { mode = 'n', keys = '<Leader>' },
       { mode = 'x', keys = '<Leader>' },
-
-      -- Built-in completion
       { mode = 'i', keys = '<C-x>' },
-
-      -- `g` key
       { mode = 'n', keys = 'g' },
       { mode = 'x', keys = 'g' },
-
-      -- Marks
       { mode = 'n', keys = "'" },
       { mode = 'n', keys = '`' },
       { mode = 'x', keys = "'" },
       { mode = 'x', keys = '`' },
-
-      -- Registers
       { mode = 'n', keys = '"' },
       { mode = 'x', keys = '"' },
       { mode = 'i', keys = '<C-r>' },
       { mode = 'c', keys = '<C-r>' },
-
-      -- Window commands
       { mode = 'n', keys = '<C-w>' },
-
-      -- `z` key
       { mode = 'n', keys = 'z' },
       { mode = 'x', keys = 'z' },
     },
 
     clues = {
-      -- Enhance this by adding descriptions for <Leader> mapping groups
-      miniclue.gen_clues.builtin_completion(),
-      miniclue.gen_clues.g(),
-      miniclue.gen_clues.marks(),
-      miniclue.gen_clues.registers(),
-      miniclue.gen_clues.windows(),
-      miniclue.gen_clues.z(),
+      clue.gen_clues.builtin_completion(),
+      clue.gen_clues.g(),
+      clue.gen_clues.marks(),
+      clue.gen_clues.registers(),
+      clue.gen_clues.windows(),
+      clue.gen_clues.z(),
     },
   }
 end
