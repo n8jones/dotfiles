@@ -35,6 +35,7 @@ require("lazy").setup({
     {'mfussenegger/nvim-jdtls'},
     {'williamboman/mason-lspconfig.nvim', version = '*'},
   } },
+  {'norcalli/nvim-colorizer.lua'},
   {'nvim-telescope/telescope.nvim', version = '*', config = delegate('telescope'), dependencies = {
     {'nvim-telescope/telescope-fzf-native.nvim', build='make'},
     'nvim-telescope/telescope-ui-select.nvim',
