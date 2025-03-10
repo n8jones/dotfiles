@@ -45,7 +45,7 @@ require("lazy").setup({
     'nvim-treesitter/nvim-treesitter-context',
     'tadmccorkle/markdown.nvim',
   } },
-  {'olimorris/onedarkpro.nvim', priority = 1000, version='*', init = function() vim.cmd.colorscheme('onedark_dark') end },
+  {'olimorris/onedarkpro.nvim', priority = 1000, version='*', init = function() vim.cmd.colorscheme('onedark_dark') end, opts = {highlights = { SpellBad = {underline=true, fg='red'} }}},
   {'stevearc/oil.nvim', version = '*', cmd = {'Oil'}, opts = {keymaps={['<esc><esc>']='actions.close'}}},
   {'tpope/vim-fugitive'},
   {'tpope/vim-sleuth'},
