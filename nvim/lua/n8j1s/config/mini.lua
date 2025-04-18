@@ -38,7 +38,6 @@ P.opts = {
     return {
       items = {
         starter.sections.recent_files(10, true),
-        starter.sections.telescope(),
         starter.sections.builtin_actions(),
       }
     }
@@ -67,7 +66,6 @@ function M.config()
       o = {}
     end
     m.setup(o)
-    vim.notify('Configured mini.' .. v[1], vim.log.levels.TRACE)
   end
 
   vim.g.minitrailspace_disable = true
