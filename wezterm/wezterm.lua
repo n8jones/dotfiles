@@ -3,7 +3,7 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 config.color_scheme = 'onedarkpro_onedark_dark'
 config.font = wezterm.font 'JetBrainsMono NF'
-config.default_prog = { 'pwsh.exe', '-NoLogo' }
+config.default_prog = { 'powershell.exe', '-NoLogo' }
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 }
 config.scrollback_lines = 100000
