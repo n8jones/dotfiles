@@ -2,5 +2,6 @@
 vim/view
 vim/spell
 *.swp
-
 fishd.*
+nushell/history.txt
+
