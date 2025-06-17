@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {'aklt/plantuml-syntax'},
   {'echasnovski/mini.nvim', version = '*', config = delegate('mini'), },
+  {'elkasztano/nushell-syntax-vim', ft='nu', },
   {'folke/zen-mode.nvim', version = '*', opts = { window = { width = 90, }, plugins = { twilight = { enabled = true }, wezterm = { enabled = true, font = '+4' } } } },
   {'folke/twilight.nvim', version = '*', opts = { } },
   {'hiphish/rainbow-delimiters.nvim', version = '*' },
@@ -40,7 +41,7 @@ require("lazy").setup({
     {'nvim-telescope/telescope-fzf-native.nvim', build='make'},
     'nvim-telescope/telescope-ui-select.nvim',
     'nvim-lua/plenary.nvim',
-  } },
+  }, cmd={'Telescope'} },
   {'nvim-treesitter/nvim-treesitter', config = delegate('treesitter'), version='*', dependencies = {
     'nvim-treesitter/nvim-treesitter-context',
     'tadmccorkle/markdown.nvim',
@@ -52,7 +53,7 @@ require("lazy").setup({
   {'voldikss/vim-floaterm', config = delegate('floaterm')},
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false, init = delegate('lsp_zero'), },
   {'williamboman/mason.nvim', lazy = false, config = true, version = '*'},
-  {'zk-org/zk-nvim', config = delegate('zk') },
+  {'zk-org/zk-nvim', config = delegate('zk'), ft='markdown' },
   {'https://git.sr.ht/~whynothugo/lsp_lines.nvim', version = '*', opts = {} },
 })
 
