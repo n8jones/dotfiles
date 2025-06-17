@@ -31,6 +31,7 @@ function M.config()
       lua_ls = M.lua_ls_setup,
     }
   })
+  vim.lsp.enable('nushell')
 end
 
 function M.lua_ls_setup()
