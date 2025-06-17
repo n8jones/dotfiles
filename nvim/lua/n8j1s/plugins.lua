@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {'aklt/plantuml-syntax'},
   {'echasnovski/mini.nvim', version = '*', config = delegate('mini'), },
-  {'elkasztano/nushell-syntax-vim', ft='nu', },
   {'folke/zen-mode.nvim', version = '*', opts = { window = { width = 90, }, plugins = { twilight = { enabled = true }, wezterm = { enabled = true, font = '+4' } } } },
   {'folke/twilight.nvim', version = '*', opts = { } },
   {'hiphish/rainbow-delimiters.nvim', version = '*' },
