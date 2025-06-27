@@ -39,11 +39,9 @@ def --wrapped e [...args] {
 #   A table with the following columns:
 #   - path: The file path of the match.
 #   - line: The line number of the match.
-#   - start_min: The starting column of the first match on the line.
-#   - end_max: The ending column of the last match on the line.
 #   - text: The full text of the line with all matches highlighted.
 #   - data: The original JSON data record from ripgrep for further inspection.
-def --wrapped rg [...args]: nothing -> table<path:string, line:int, start_min:int, end_max:int, text:string, data:record> {
+def --wrapped rg [...args]: nothing -> table<path:string, line:int,  text:string, data:record> {
     let color = ansi $env.config.color_config.search_result
     let reset = ansi reset
     ^rg --json ...$args |
@@ -68,8 +66,6 @@ def --wrapped rg [...args]: nothing -> table<path:string, line:int, start_min:in
             {
                 path: $d.path.text,
                 line: $d.line_number,
-                start_min: ($d.submatches | get start | math min),
-                end_max: ($d.submatches | get end | math max),
                 text: $highlighted_text,
                 data: $d,
             }
