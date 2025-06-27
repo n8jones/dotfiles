@@ -12,6 +12,15 @@ config.launch_menu = {
   { label = 'Powershell', args = {'powershell.exe', '-NoLogo'} },
   { label = 'CMD', args = {'cmd.exe'} },
 }
+config.ssh_domains = {
+  {
+    name = 'VirtualBox',
+    remote_address = '127.0.0.1:2222',
+    multiplexing = 'None',
+    username = 'nate',
+    default_prog = { 'bash', '-lc', 'nu' },
+  }
+}
 local function tabn(tab)
   return { key = tostring(tab), mods = 'LEADER', action = act.ActivateTab(tab - 1) }
 end
@@ -41,7 +50,7 @@ config.keys = {
   { key = '0', mods = 'LEADER', action = act.ActivateTab(9) },
   { key = 'z', mods = 'LEADER', action = act.TogglePaneZoomState },
   { key = 'f', mods = 'LEADER', action = act.ToggleFullScreen },
-  { key = 'c', mods = 'LEADER', action = act.SpawnTab('DefaultDomain') },
+  { key = 'c', mods = 'LEADER', action = act.SpawnTab('CurrentPaneDomain') },
   { key = '%', mods = 'LEADER|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
   { key = '"', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = 'h', mods = 'LEADER', action = act.ActivatePaneDirection('Left') },
@@ -54,8 +63,13 @@ config.keys = {
   { key = 'q', mods = 'LEADER', action = act.QuickSelect },
   { key = ' ', mods = 'LEADER', action = act.ShowLauncherArgs { flags = "FUZZY|TABS|COMMANDS|LAUNCH_MENU_ITEMS|WORKSPACES" } },
   { key = 'r', mods = 'LEADER', action = act.PromptInputLine { description = wezterm.format { { Text = "Enter command: " } }, action = wezterm.action_callback(run_callback) } },
-  { key = 'n', mods = 'LEADER', action = act.SwitchToWorkspace { name = 'Notes', spawn = {args = {'nvim.exe'}, cwd = [[C:\Users\nljones2\OneDrive - NASA\Documents\Notes\]]} } },
+  { key = 'n', mods = 'LEADER', action = act.SwitchToWorkspace { name = 'Notes', spawn = {domain = 'DefaultDomain', args = {'nvim.exe'}, cwd = os.getenv('NOTES_HOME') } } },
   { key = 'd', mods = 'LEADER', action = act.SwitchToWorkspace { name = 'default'} },
+  { key = 'b', mods = 'LEADER', action = act.SwitchToWorkspace { name = 'VB', spawn = {domain = { DomainName = "VirtualBox" }, }, } },
+  { key = 'UpArrow', mods = 'CTRL', action = act.SwitchWorkspaceRelative(-1) },
+  { key = 'DownArrow', mods = 'CTRL', action = act.SwitchWorkspaceRelative(1) },
+  { key = 'LeftArrow', mods = 'CTRL', action = act.ActivateTabRelative(-1) },
+  { key = 'RightArrow', mods = 'CTRL', action = act.ActivateTabRelative(1) },
 
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
@@ -111,6 +125,8 @@ local function on_update_status(win, pane)
   local active = wezterm.mux.get_active_workspace()
   local msg = {
     SEP,
+    { Text = pane:get_domain_name() },
+    { Text = '/' },
     { Text = active },
     { Text = '(' },
     { Text = tostring(indexOf(workspaces, active)) },
