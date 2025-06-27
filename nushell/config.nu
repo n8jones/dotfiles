@@ -28,20 +28,10 @@ def --wrapped e [...args] {
 #
 # This command calls the external `rg` command with the `--json` flag and parses the
 # output into a Nushell table.
-#
-# Usage:
-# > rg <rg_flags> <pattern> <path>
-#
-# Parameters:
-#   ...args: string - All arguments and flags to pass directly to the external `rg` command.
-#
-# Output:
-#   A table with the following columns:
-#   - path: The file path of the match.
-#   - line: The line number of the match.
-#   - text: The full text of the line with all matches highlighted.
-#   - data: The original JSON data record from ripgrep for further inspection.
-def --wrapped rg [...args]: nothing -> table<path:string, line:int,  text:string, data:record> {
+def --wrapped rg [
+        --data # Include RipGrep data record
+        ...args # All RipGrep arguments
+    ]: nothing -> table<path:string, line:int,  text:string, data:record> {
     let color = ansi $env.config.color_config.search_result
     let reset = ansi reset
     ^rg --json ...$args |
@@ -63,11 +53,15 @@ def --wrapped rg [...args]: nothing -> table<path:string, line:int,  text:string
                 append ($text | str substring ($state.last_index)..) |
                 str join |
                 str trim
-            {
+            let row = {
                 path: $d.path.text,
                 line: $d.line_number,
                 text: $highlighted_text,
-                data: $d,
+            }
+            if $data {
+                $row | insert data $d
+            } else {
+                $row
             }
         }
 }
